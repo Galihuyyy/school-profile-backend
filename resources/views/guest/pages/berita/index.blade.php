@@ -1,4 +1,4 @@
-<section class="py-20">
+<section class="py-20 bg-white">
     <div class="max-w-7xl mx-auto px-6">
         <h2 class="text-4xl font-extrabold mb-12 text-center">Berita Terkini</h2>
         <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
@@ -8,7 +8,7 @@
                 </div>
                 <div class="flex-1">
                     <span class="text-teal-600 font-bold text-sm uppercase tracking-widest">Prestasi</span>
-                    <h3 class="text-2xl font-bold mt-2 mb-3 hover:text-teal-600 transition-colors cursor-pointer leading-tight">Siswa RPL Menangkan Hackathon Tingkat Nasional</h3>
+                    <a href="test"><h3 class="text-2xl font-bold mt-2 mb-3 hover:text-teal-600 transition-colors cursor-pointer leading-tight">Siswa RPL Menangkan Hackathon Tingkat Nasional</h3></a>
                     <p class="text-slate-600 line-clamp-2">Tim dari SMKN 1 ABCD berhasil meraih juara pertama dalam ajang bergengsi pengembangan aplikasi...</p>
                     <p class="text-sm text-slate-400 mt-4 italic">12 Maret 2026</p>
                 </div>

@@ -3,7 +3,7 @@
     <div class="absolute bottom-0 right-[-5%] w-100 h-100 bg-blue-200 rounded-full mix-blend-multiply filter blur-[130px] opacity-40 z-0"></div>
     <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-80 h-80 bg-emerald-100 rounded-full mix-blend-multiply filter blur-[110px] opacity-30 z-0"></div>
     
-    <div class="max-w-7xl mx-auto px-6 sm:px-12 py-12 relative z-10 w-full">
+    <div class="max-w-7xl mx-auto px-6 sm:px-12 py-28 lg:py-12 relative z-10 w-full">
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center test">
     
             <div class="flex flex-col justify-center order-2 lg:order-1 mt-12 lg:mt-0">

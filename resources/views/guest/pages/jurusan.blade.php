@@ -1,6 +1,6 @@
 <section class="py-20 bg-white relative">
     <div class="max-w-7xl mx-auto px-6">
-        <div class="flex flex-col md:flex-row justify-between items-end mb-12 gap-6">
+        <div class="flex flex-col md:flex-row justify-between items-center mb-12 gap-6">
             <div>
                 <h2 class="text-4xl font-extrabold mb-2 text-slate-950">Program Keahlian</h2>
                 <p class="text-slate-600">Pilih masa depanmu sesuai dengan minat dan bakat.</p>

@@ -5,6 +5,7 @@
     @include('guest.pages.hero-section')
     @include('guest.pages.video-profile')
     @include('guest.pages.jurusan')
-    @include('guest.pages.berita')
+    @include('guest.pages.guru.index')
+    @include('guest.pages.berita.index')
     @include('guest.pages.kontak')
 </x-layouts.html-starter>
