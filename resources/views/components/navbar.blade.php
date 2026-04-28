@@ -11,6 +11,7 @@
             <li class="hover:text-gray-900 transition">Beranda</li>
             <li class="hover:text-gray-900 transition">Profil</li>
             <li class="hover:text-gray-900 transition">Jurusan</li>
+            <li class="hover:text-gray-900 transition">Guru</li>
             <li class="hover:text-gray-900 transition">Berita</li>
             <li class="hover:text-gray-900 transition">Kontak</li>
         </ul>
