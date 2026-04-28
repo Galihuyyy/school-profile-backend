@@ -10,3 +10,16 @@
     --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
         'Segoe UI Symbol', 'Noto Color Emoji';
 }
+
+@font-face {
+  font-family: 'Montserrat';
+  src: url('../fonts/Montserrat-Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+}
+
+body {
+    font-family: 'Montserrat', sans-serif;
+}
+
+@source inline("bg-gradient-to-r from-teal-600 via-teal-500 to-blue-600 bg-clip-text text-transparent");

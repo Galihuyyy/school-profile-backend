@@ -1,23 +1,15 @@
-<!--
-Aturan Pemberian Route Name
-(page).(method)
-
-contoh:
-    ->name('post.create')
-
-Cara penggunaan nantinya akan seperti
-route('admin::post.create')
--->
 <?php
 
 use Illuminate\Support\Facades\Route;
 
-Route::prefix('admin')->name('admin::')->group(function() {
-
-});
-
 Route::name('user::')->group(function() {
     Route::get('/', function() {
-        return view('welcome');
+        return view('guest.index');
+    });
+    Route::get('/test', function() {
+        return view('guest.detail-berita');
+    });
+    Route::get('/test-create', function() {
+        return view('guest.pages.guru.list-guru');
     });
 });
