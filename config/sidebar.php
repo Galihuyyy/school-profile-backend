@@ -4,7 +4,7 @@ return [
     [
         'title' => 'School Settings',
         'icon' => 'settings',
-        'route' => 'admin::dashboard',
+        'route' => 'admin::school-settings.index',
     ],
     // [
     //     'title' => 'Master Data',
