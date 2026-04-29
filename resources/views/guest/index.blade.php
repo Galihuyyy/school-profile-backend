@@ -1,4 +1,4 @@
-<x-layouts.html-starter>
+<x-layouts.user-layout>
     <x-slot name="styles">
         <link rel="stylesheet" href="{{ asset('css/guest/hero-section.css') }}">
     </x-slot>
@@ -8,4 +8,4 @@
     @include('guest.pages.guru.index')
     @include('guest.pages.berita.index')
     @include('guest.pages.kontak')
-</x-layouts.html-starter>
+</x-layouts.user-layout>

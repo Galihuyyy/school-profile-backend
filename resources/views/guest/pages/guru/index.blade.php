@@ -1,4 +1,4 @@
-<section class="py-24">
+<section class="py-24" id="guru">
     <div class="max-w-7xl mx-auto px-6">
         <div class="bg-white shadow-xl rounded-[3rem] p-8 md:p-16 border border-slate-100 flex flex-col lg:flex-row items-center gap-12 relative overflow-hidden">
             
