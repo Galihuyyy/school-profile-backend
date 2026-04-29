@@ -1,4 +1,4 @@
-<section class="py-20 bg-white relative">
+<section class="py-20 bg-white relative" id="jurusan">
     <div class="max-w-7xl mx-auto px-6">
         <div class="flex flex-col md:flex-row justify-between items-center mb-12 gap-6">
             <div>

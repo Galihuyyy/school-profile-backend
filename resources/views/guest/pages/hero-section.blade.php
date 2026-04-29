@@ -1,4 +1,4 @@
-<section class="bg-slate-50 relative overflow-hidden min-h-screen flex items-center">
+<section class="bg-slate-50 relative overflow-hidden min-h-screen flex items-center" id="beranda">
     <div class="absolute top-[-10%] left-[-5%] w-96 h-96 bg-teal-300 rounded-full mix-blend-multiply filter blur-[120px] opacity-40 z-0"></div>
     <div class="absolute bottom-0 right-[-5%] w-100 h-100 bg-blue-200 rounded-full mix-blend-multiply filter blur-[130px] opacity-40 z-0"></div>
     <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-80 h-80 bg-emerald-100 rounded-full mix-blend-multiply filter blur-[110px] opacity-30 z-0"></div>
@@ -23,21 +23,16 @@
                 </h1>
     
                 <p class="mt-8 text-xl text-slate-700 leading-relaxed max-w-2xl font-normal">
-                    <strong class="font-semibold text-slate-900">SMKN 1 SUKOREJO</strong> berkomitmen mencetak lulusan siap
-                    kerja yang kompeten, kompetitif, dan berkarakter kuat menghadapi tantangan Industri 4.0 dan Society
-                    5.0.
+                    <strong class="font-semibold text-slate-900">{{ $schoolSetting->name }}</strong> {{ $schoolSetting->description }}
                 </p>
     
                 <div class="mt-12 flex flex-wrap gap-5">
-                    <a href="#" class="px-9 py-4.5 bg-teal-600 text-white rounded-2xl font-bold text-lg shadow-lg shadow-teal-600/30 hover:bg-teal-700 transition-all duration-300 hover:-translate-y-1.5 flex items-center gap-2.5">
-                        Daftar Sekarang
+                    <a href="#profil" class="px-9 py-4.5 bg-teal-600 text-white rounded-2xl font-bold text-lg shadow-lg shadow-teal-600/30 hover:bg-teal-700 transition-all duration-300 hover:-translate-y-1.5 flex items-center gap-2.5">
+                        Jelajahi Sekarang
                         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"
                                 d="M13 7l5 5m0 0l-5 5m5-5H6"></path>
                         </svg>
-                    </a>
-                    <a href="#" class="px-9 py-4.5 bg-white text-slate-800 border-2 border-slate-200 rounded-2xl font-bold text-lg shadow-sm hover:bg-slate-50 hover:border-slate-300 transition-all duration-300 flex items-center gap-2.5">
-                        Tur Virtual Sekolah
                     </a>
                 </div>
             </div>
@@ -50,7 +45,7 @@
     
     
                 <div class="relative w-72 h-72 sm:w-80 sm:h-80 md:w-96 md:h-96 rounded-full bg-white p-6 shadow-2xl border-8 border-white flex items-center justify-center z-10">
-                    <img src="{{ asset('images/logo-smk.png') }}" alt="Logo Resmi SMKN 1 ABCD" class="w-full h-full rounded-full object-contain" />
+                    <img src="{{ $schoolSetting->logo_url }}" alt="Logo Resmi SMKN 1 ABCD" class="w-full h-full rounded-full object-cover" />
                 </div>
     
     
@@ -64,7 +59,7 @@
                     </div>
                     <div>
                         <p class="text-sm text-slate-500 font-medium">Status Sekolah</p>
-                        <p class="text-xl font-extrabold text-slate-950">Negeri</p>
+                        <p class="text-xl font-extrabold text-slate-950 capitalize">{{ $schoolSetting->status }}</p>
                     </div>
                 </div>
     
@@ -74,7 +69,7 @@
                             d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z">
                         </path>
                     </svg>
-                    <p class="font-bold text-sm tracking-wide">Terakreditasi A</p>
+                    <p class="font-bold text-sm tracking-wide">Terakreditasi {{ $schoolSetting->akreditasi }}</p>
                 </div>
             </div>
     

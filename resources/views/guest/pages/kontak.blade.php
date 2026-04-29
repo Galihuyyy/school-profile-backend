@@ -1,4 +1,4 @@
-<section class="py-24 relative">
+<section class="py-24 relative" id="kontak">
     <div class="max-w-7xl mx-auto px-6">
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             
@@ -15,7 +15,7 @@
                         </div>
                         <div>
                             <p class="text-sm font-semibold text-slate-400 uppercase tracking-wider">Lokasi</p>
-                            <p class="text-lg font-bold text-slate-800">Jl. Teknologi Canggih No. 1, Kota Inovasi</p>
+                            <p class="text-lg font-bold text-slate-800">{{ $schoolSetting->location }}</p>
                         </div>
                     </div>
 
@@ -25,7 +25,7 @@
                         </div>
                         <div>
                             <p class="text-sm font-semibold text-slate-400 uppercase tracking-wider">Email Resmi</p>
-                            <p class="text-lg font-bold text-slate-800">info@smkn1abcd.sch.id</p>
+                            <p class="text-lg font-bold text-slate-800">{{ $schoolSetting->email }}</p>
                         </div>
                     </div>
                 </div>

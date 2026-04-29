@@ -1,4 +1,4 @@
-<section class="py-20 bg-white">
+<section class="py-20 bg-white" id="berita">
     <div class="max-w-7xl mx-auto px-6">
         <h2 class="text-4xl font-extrabold mb-12 text-center">Berita Terkini</h2>
         <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
