@@ -15,43 +15,58 @@
     {{-- TOOLBAR --}}
     <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
         {{-- Search --}}
-        <form method="GET" action="{{ route('admin::teachers.index') }}"
-            class="flex items-center gap-2 w-full sm:w-auto">
-            <div class="relative w-full sm:w-72">
-                <svg class="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400 pointer-events-none"
-                    fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round"
-                        d="M21 21l-4.35-4.35M17 11A6 6 0 115 11a6 6 0 0112 0z" />
-                </svg>
-                <input type="text" name="search" value="{{ request('search') }}" placeholder="Cari nama atau NIP..."
-                    class="w-full pl-10 pr-4 py-2.5 rounded-xl border border-slate-200 bg-white text-sm text-slate-700 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-transparent" />
+        <div x-data="{
+            search: '{{ request('search') }}',
+            sort: '{{ $sort }}',
+            active: '{{ $active }}',
+            submit() {
+                const params = new URLSearchParams({
+                search: this.search,
+                sort: this.sort,
+                active: this.active,
+            });
+            window.location.href = '{{ route('admin::teachers.index') }}?' + params.toString();
+                }
+            }">
+            <div class="flex items-center gap-2 w-full sm:w-auto">
+
+                {{-- Search --}}
+                <div class="relative w-full sm:w-72">
+                    <svg class="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400 pointer-events-none"
+                        fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M21 21l-4.35-4.35M17 11A6 6 0 115 11a6 6 0 0112 0z" />
+                    </svg>
+                    <input type="text" x-model="search" @keydown.enter="submit()" @change="submit()"
+                        placeholder="Cari nama atau NIP..." {{ request('search') ? 'autofocus' : '' }}
+                        class="w-full pl-10 pr-4 py-2.5 rounded-xl border border-slate-200 bg-white text-sm text-slate-700 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-transparent" />
+                </div>
+
+                {{-- Reset --}}
+                <template x-if="search">
+                    <button type="button" @click="search = ''; submit()"
+                        class="px-4 py-2.5 bg-slate-200 hover:bg-slate-300 text-slate-600 rounded-xl text-sm font-semibold transition-colors">
+                        Reset
+                    </button>
+                </template>
+
+                {{-- Sort --}}
+                <select x-model="sort" @change="submit()"
+                    class="px-3 py-2.5 rounded-xl bg-slate-200 text-sm text-slate-600 font-semibold focus:outline-none focus:ring-0 cursor-pointer">
+                    <option value="asc">A → Z</option>
+                    <option value="desc">Z → A</option>
+                </select>
+
+                {{-- Filter Aktif --}}
+                <select x-model="active" @change="submit()"
+                    class="px-3 py-2.5 rounded-xl bg-slate-200 text-sm text-slate-600 font-semibold focus:outline-none focus:ring-0 cursor-pointer">
+                    <option value="">Semua</option>
+                    <option value="1">Aktif</option>
+                    <option value="0">Non-Aktif</option>
+                </select>
+
             </div>
-            <button type="submit"
-                class="px-4 py-2.5 bg-slate-200 hover:bg-slate-300 text-slate-600 rounded-xl text-sm font-semibold transition-colors">
-                Cari
-            </button>
-            @if (request('search'))
-            <a href="{{ route('admin::teachers.index') }}"
-                class="px-4 py-2.5 bg-slate-200 hover:bg-slate-300 text-slate-600 rounded-xl text-sm font-semibold transition-colors">
-                Reset
-            </a>
-            @endif
-
-            {{-- Sort --}}
-            <select name="sort" onchange="this.form.submit()"
-                class="px-3 py-2.5 rounded-xl bg-slate-200 text-sm text-slate-600 font-semibold focus:outline-none focus:ring-0 cursor-pointer">
-                <option value="asc" {{ $sort=='asc' ? 'selected' : '' }}>A → Z</option>
-                <option value="desc" {{ $sort=='desc' ? 'selected' : '' }}>Z → A</option>
-            </select>
-
-            {{-- Filter Aktif --}}
-            <select name="active" onchange="this.form.submit()"
-                class="px-3 py-2.5 rounded-xl bg-slate-200 text-sm text-slate-600 font-semibold focus:outline-none focus:ring-0 cursor-pointer">
-                <option value="" {{ $active==='' || $active===null ? 'selected' : '' }}>Semua</option>
-                <option value="1" {{ $active=='1' ? 'selected' : '' }}>Aktif</option>
-                <option value="0" {{ $active=='0' ? 'selected' : '' }}>Non-Aktif</option>
-            </select>
-        </form>
+        </div>
 
 
         {{-- Tambah Guru --}}
