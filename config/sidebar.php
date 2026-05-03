@@ -12,6 +12,10 @@ return [
             [
                 'title' => 'Guru',
                 'route' => 'admin::teachers.index'
+            ],
+            [
+                'title' => 'Jurusan',
+                'route' => 'admin::departments.index'
             ]
         ]
     ]
