@@ -9,6 +9,7 @@
             <x-slot name="title">{{ $title ?? '' }}</x-slot>
             <x-slot name="subtitle">{{ $subtitle ?? '' }}</x-slot>
         </x-admin.page-header>
+        <x-admin.notif></x-admin.notif>
         {{ $slot }}
     </main>
 

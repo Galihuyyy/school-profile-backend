@@ -6,14 +6,8 @@ return [
         'icon' => 'settings',
         'route' => 'admin::school-settings.index',
     ],
-    // [
-    //     'title' => 'Master Data',
-    //     'icon' => 'database',
-    //     'children' => [
-    //         [
-    //             'title' => '',
-    //             'route' => '',
-    //         ],
-    //     ],
-    // ],
+    [
+        'title' => 'Data Guru',
+        'route' => 'admin::teachers.index'
+    ]
 ];

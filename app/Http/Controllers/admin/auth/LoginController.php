@@ -23,7 +23,7 @@ class LoginController extends Controller
 
         if (Auth::attempt([$field => $loginInput, 'password' => $request->password])) {
             $request->session()->regenerate();
-            return redirect()->route('admin::dashboard');
+            return redirect()->route('admin::school-settings.index');
         }
 
         return back()->withErrors([
