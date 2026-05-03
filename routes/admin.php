@@ -19,15 +19,7 @@ Route::prefix('admin')->name('admin::')->middleware('web')->group(function () {
     Route::post('/school-settings/socmed/update', [SchoolSettingController::class, 'updateSocmed'])->name('school-settings.socmed.update');
 
     // crud teacher
-    Route::prefix('/teachers')->name('teachers.')->group(function () {
-        Route::get('/', [TeacherController::class, 'index'])->name('index');
-        Route::get('/create', [TeacherController::class, 'create'])->name('create');
-        Route::get('/{teacher}', [TeacherController::class, 'show'])->name('show');
-        Route::get('/{teacher}/edit', [TeacherController::class, 'edit'])->name('edit');
-        Route::post('/', [TeacherController::class, 'store'])->name('store');
-        Route::put('/{teacher}', [TeacherController::class, 'update'])->name('update');
-        Route::delete('/{teacher}', [TeacherController::class, 'destroy'])->name('destroy');
-    });
+    Route::resource('teachers', TeacherController::class)->names('teachers');
 
     // crud departments
     Route::prefix('/departments')->name('departments.')->group(function () {
