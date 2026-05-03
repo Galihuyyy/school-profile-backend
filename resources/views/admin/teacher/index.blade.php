@@ -36,7 +36,23 @@
                 Reset
             </a>
             @endif
+
+            {{-- Sort --}}
+            <select name="sort" onchange="this.form.submit()"
+                class="px-3 py-2.5 rounded-xl bg-slate-200 text-sm text-slate-600 font-semibold focus:outline-none focus:ring-0 cursor-pointer">
+                <option value="asc" {{ $sort=='asc' ? 'selected' : '' }}>A → Z</option>
+                <option value="desc" {{ $sort=='desc' ? 'selected' : '' }}>Z → A</option>
+            </select>
+
+            {{-- Filter Aktif --}}
+            <select name="active" onchange="this.form.submit()"
+                class="px-3 py-2.5 rounded-xl bg-slate-200 text-sm text-slate-600 font-semibold focus:outline-none focus:ring-0 cursor-pointer">
+                <option value="" {{ $active==='' || $active===null ? 'selected' : '' }}>Semua</option>
+                <option value="1" {{ $active=='1' ? 'selected' : '' }}>Aktif</option>
+                <option value="0" {{ $active=='0' ? 'selected' : '' }}>Non-Aktif</option>
+            </select>
         </form>
+
 
         {{-- Tambah Guru --}}
         <a href="{{ route('admin::teachers.create') }}"
@@ -171,11 +187,7 @@
                                             d="M17 20h5v-2a4 4 0 00-5-4M9 20H4v-2a4 4 0 015-4m0 0a4 4 0 108 0 4 4 0 01-8 0z" />
                                     </svg>
                                 </div>
-                                <p class="text-slate-400 font-semibold">Belum ada data guru.</p>
-                                <a href="{{ route('admin::teachers.create') }}"
-                                    class="text-teal-600 text-sm font-bold hover:underline">
-                                    Tambah guru pertama
-                                </a>
+                                <p class="text-slate-400 font-semibold">Data kosong.</p>
                             </div>
                         </td>
                     </tr>
