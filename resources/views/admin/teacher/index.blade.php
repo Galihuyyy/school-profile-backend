@@ -12,22 +12,15 @@
     </div>
     @endif
 
-    {{-- TOOLBAR --}}
-    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
-        {{-- Search --}}
-        <div x-data="{
-            search: '{{ request('search') }}',
-            sort: '{{ $sort }}',
-            active: '{{ $active }}',
-            submit() {
-                const params = new URLSearchParams({
-                search: this.search,
-                sort: this.sort,
-                active: this.active,
-            });
-            window.location.href = '{{ route('admin::teachers.index') }}?' + params.toString();
-                }
-            }">
+    {{-- 🔥 GLOBAL STATE --}}
+    <div x-data="{ 
+        search: '', 
+        sort: '{{ $sort }}', 
+        active: '{{ $active }}' 
+    }">
+
+        {{-- TOOLBAR --}}
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
             <div class="flex items-center gap-2 w-full sm:w-auto">
 
                 {{-- Search --}}
@@ -37,28 +30,31 @@
                         <path stroke-linecap="round" stroke-linejoin="round"
                             d="M21 21l-4.35-4.35M17 11A6 6 0 115 11a6 6 0 0112 0z" />
                     </svg>
-                    <input type="text" x-model="search" @keydown.enter="submit()" @change="submit()"
-                        placeholder="Cari nama atau NIP..." {{ request('search') ? 'autofocus' : '' }}
-                        class="w-full pl-10 pr-4 py-2.5 rounded-xl border border-slate-200 bg-white text-sm text-slate-700 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-transparent" />
+                    <input 
+                        type="text" 
+                        x-model="search"
+                        placeholder="Cari nama atau NIP..."
+                        class="w-full pl-10 pr-4 py-2.5 rounded-xl border border-slate-200 bg-white text-sm text-slate-700 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-transparent" 
+                    />
                 </div>
 
                 {{-- Reset --}}
                 <template x-if="search">
-                    <button type="button" @click="search = ''; submit()"
+                    <button type="button" @click="search = ''"
                         class="px-4 py-2.5 bg-slate-200 hover:bg-slate-300 text-slate-600 rounded-xl text-sm font-semibold transition-colors">
                         Reset
                     </button>
                 </template>
 
-                {{-- Sort --}}
-                <select x-model="sort" @change="submit()"
+                {{-- Sort (masih backend) --}}
+                <select x-model="sort" @change="window.location.href='?sort='+sort+'&active='+active"
                     class="px-3 py-2.5 rounded-xl bg-slate-200 text-sm text-slate-600 font-semibold focus:outline-none focus:ring-0 cursor-pointer">
                     <option value="asc">A → Z</option>
                     <option value="desc">Z → A</option>
                 </select>
 
-                {{-- Filter Aktif --}}
-                <select x-model="active" @change="submit()"
+                {{-- Filter Aktif (backend) --}}
+                <select x-model="active" @change="window.location.href='?sort='+sort+'&active='+active"
                     class="px-3 py-2.5 rounded-xl bg-slate-200 text-sm text-slate-600 font-semibold focus:outline-none focus:ring-0 cursor-pointer">
                     <option value="">Semua</option>
                     <option value="1">Aktif</option>
@@ -66,150 +62,115 @@
                 </select>
 
             </div>
+
+            {{-- Tambah Guru --}}
+            <a href="{{ route('admin::teachers.create') }}"
+                class="flex items-center gap-2 px-5 py-2.5 bg-teal-600 hover:bg-teal-700 text-white rounded-xl text-sm font-bold transition-colors shadow-sm whitespace-nowrap">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4" />
+                </svg>
+                Tambah Guru
+            </a>
         </div>
 
+        {{-- TABLE --}}
+        <div class="bg-white rounded-2xl border border-slate-100 shadow-sm overflow-hidden"
+            x-data="{ openDelete: false, deleteId: null, deleteName: '' }">
+            <div class="overflow-x-auto">
+                <table class="w-full text-sm">
+                    <thead>
+                        <tr class="bg-slate-50 border-b border-slate-100">
+                            @foreach (['No', 'Nama', 'NIP','Jabatan', 'Status', 'Aksi'] as $item)
+                                <th class="text-left px-6 py-4 text-xs font-bold text-slate-400 uppercase tracking-wider">{{ $item }}</th>
+                            @endforeach
+                        </tr>
+                    </thead>
 
-        {{-- Tambah Guru --}}
-        <a href="{{ route('admin::teachers.create') }}"
-            class="flex items-center gap-2 px-5 py-2.5 bg-teal-600 hover:bg-teal-700 text-white rounded-xl text-sm font-bold transition-colors shadow-sm whitespace-nowrap">
-            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4" />
-            </svg>
-            Tambah Guru
-        </a>
-    </div>
+                    <tbody class="divide-y divide-slate-50">
+                        @forelse ($teachers as $teacher)
+                        <tr 
+                            x-show="
+                                !search ||
+                                '{{ strtolower($teacher->name) }}'.includes(search.toLowerCase()) ||
+                                '{{ strtolower((string) $teacher->nip) }}'.includes(search.toLowerCase())
+                            "
+                            class="hover:bg-slate-50/50 transition-colors"
+                        >
+                            <td class="px-6 py-4 text-slate-400 font-medium">
+                                {{ $teachers->firstItem() + $loop->index }}
+                            </td>
 
-    {{-- TABLE --}}
-    <div class="bg-white rounded-2xl border border-slate-100 shadow-sm overflow-hidden"
-        x-data="{ openDelete: false, deleteId: null, deleteName: '' }">
-        <div class="overflow-x-auto">
-            <table class="w-full text-sm">
-                <thead>
-                    <tr class="bg-slate-50 border-b border-slate-100">
-                        <th class="text-left px-6 py-4 text-xs font-bold text-slate-400 uppercase tracking-wider w-10">#
-                        </th>
-                        <th class="text-left px-6 py-4 text-xs font-bold text-slate-400 uppercase tracking-wider">Guru
-                        </th>
-                        <th class="text-left px-6 py-4 text-xs font-bold text-slate-400 uppercase tracking-wider">NIP
-                        </th>
-                        <th class="text-left px-6 py-4 text-xs font-bold text-slate-400 uppercase tracking-wider">
-                            Jabatan</th>
-                        <th class="text-left px-6 py-4 text-xs font-bold text-slate-400 uppercase tracking-wider">Status
-                        </th>
-                        <th class="text-center px-6 py-4 text-xs font-bold text-slate-400 uppercase tracking-wider">Aksi
-                        </th>
-                    </tr>
-                </thead>
-                <tbody class="divide-y divide-slate-50">
-                    @forelse ($teachers as $teacher)
-                    <tr class="hover:bg-slate-50/50 transition-colors">
-                        {{-- No --}}
-                        <td class="px-6 py-4 text-slate-400 font-medium">
-                            {{ $teachers->firstItem() + $loop->index }}
-                        </td>
+                            <td class="px-6 py-4">
+                                <div class="flex items-center gap-4">
+                                    @if ($teacher->photo)
+                                    <img src="{{ Storage::url($teacher->photo) }}" alt="{{ $teacher->name }}"
+                                        class="w-14 h-14 rounded-xl object-cover shrink-0 border border-slate-100">
+                                    @else
+                                    <div class="w-14 h-14 rounded-xl bg-teal-100 flex items-center justify-center shrink-0">
+                                        <span class="text-teal-600 font-bold text-sm">
+                                            {{ strtoupper(substr($teacher->name, 0, 1)) }}
+                                        </span>
+                                    </div>
+                                    @endif
+                                    <div>
+                                        <p class="font-bold text-slate-800 leading-tight">{{ $teacher->name }}</p>
+                                        <p class="text-xs text-slate-400">
+                                            {{ $teacher->birth_place }}, {{ $teacher->birth_date->format('d M Y') }}
+                                        </p>
+                                    </div>
+                                </div>
+                            </td>
 
-                        {{-- Nama + Foto --}}
-                        <td class="px-6 py-4">
-                            <div class="flex items-center gap-4">
-                                @if ($teacher->photo)
-                                <img src="{{ Storage::url($teacher->photo) }}" alt="{{ $teacher->name }}"
-                                    class="w-14 h-14 rounded-xl object-cover shrink-0 border border-slate-100">
+                            <td class="px-6 py-4 text-slate-600 font-mono text-xs">
+                                {{ $teacher->nip }}
+                            </td>
+
+                            <td class="px-6 py-4 text-slate-600">{{ $teacher->position }}</td>
+
+                            <td class="px-6 py-4">
+                                @if ($teacher->active)
+                                <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-teal-50 text-teal-700 text-xs font-bold">
+                                    <span class="w-1.5 h-1.5 rounded-full bg-teal-500"></span>
+                                    Aktif
+                                </span>
                                 @else
-                                <div class="w-14 h-14 rounded-xl bg-teal-100 flex items-center justify-center shrink-0">
-                                    <span class="text-teal-600 font-bold text-sm">{{ strtoupper(substr($teacher->name,
-                                        0, 1)) }}</span>
-                                </div>
+                                <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-slate-100 text-slate-500 text-xs font-bold">
+                                    <span class="w-1.5 h-1.5 rounded-full bg-slate-400"></span>
+                                    Non-Aktif
+                                </span>
                                 @endif
-                                <div>
-                                    <p class="font-bold text-slate-800 leading-tight">{{ $teacher->name }}</p>
-                                    <p class="text-xs text-slate-400">{{ $teacher->birth_place }}, {{
-                                        $teacher->birth_date->format('d M Y') }}</p>
+                            </td>
+
+                            <td class="px-6 py-4">
+                                <div class="flex items-center justify-center gap-2">
+                                    <a href="{{ route('admin::teachers.show', $teacher) }}"
+                                        class="w-8 h-8 rounded-lg bg-slate-100 hover:bg-blue-50 hover:text-blue-600 text-slate-500 flex items-center justify-center transition-colors">
+                                        👁
+                                    </a>
+
+                                    <a href="{{ route('admin::teachers.edit', $teacher) }}"
+                                        class="w-8 h-8 rounded-lg bg-slate-100 hover:bg-amber-50 hover:text-amber-600 text-slate-500 flex items-center justify-center transition-colors">
+                                        ✏️
+                                    </a>
+
+                                    <button type="button"
+                                        @click="openDelete = true; deleteId = {{ $teacher->id }}; deleteName = '{{ $teacher->name }}'"
+                                        class="w-8 h-8 rounded-lg bg-slate-100 hover:bg-red-50 hover:text-red-600 text-slate-500 flex items-center justify-center transition-colors">
+                                        🗑
+                                    </button>
                                 </div>
-                            </div>
-                        </td>
-
-                        {{-- NIP --}}
-                        <td class="px-6 py-4 text-slate-600 font-mono text-xs">
-                            {{ $teacher->nip }}
-                        </td>
-
-                        {{-- Jabatan --}}
-                        <td class="px-6 py-4 text-slate-600">{{ $teacher->position }}</td>
-
-                        {{-- Status --}}
-                        <td class="px-6 py-4">
-                            @if ($teacher->active)
-                            <span
-                                class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-teal-50 text-teal-700 text-xs font-bold">
-                                <span class="w-1.5 h-1.5 rounded-full bg-teal-500"></span>
-                                Aktif
-                            </span>
-                            @else
-                            <span
-                                class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-slate-100 text-slate-500 text-xs font-bold">
-                                <span class="w-1.5 h-1.5 rounded-full bg-slate-400"></span>
-                                Non-Aktif
-                            </span>
-                            @endif
-                        </td>
-
-                        {{-- Aksi --}}
-                        <td class="px-6 py-4">
-                            <div class="flex items-center justify-center gap-2">
-                                <a href="{{ route('admin::teachers.show', $teacher) }}"
-                                    class="w-8 h-8 rounded-lg bg-slate-100 hover:bg-blue-50 hover:text-blue-600 text-slate-500 flex items-center justify-center transition-colors"
-                                    title="Detail">
-                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2"
-                                        viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round"
-                                            d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-                                        <path stroke-linecap="round" stroke-linejoin="round"
-                                            d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
-                                    </svg>
-                                </a>
-
-                                <a href="{{ route('admin::teachers.edit', $teacher) }}"
-                                    class="w-8 h-8 rounded-lg bg-slate-100 hover:bg-amber-50 hover:text-amber-600 text-slate-500 flex items-center justify-center transition-colors"
-                                    title="Edit">
-                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2"
-                                        viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round"
-                                            d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
-                                    </svg>
-                                </a>
-
-                                <button type="button"
-                                    @click="openDelete = true; deleteId = {{ $teacher->id }}; deleteName = '{{ $teacher->name }}'"
-                                    class="w-8 h-8 rounded-lg bg-slate-100 hover:bg-red-50 hover:text-red-600 text-slate-500 flex items-center justify-center transition-colors"
-                                    title="Hapus">
-                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2"
-                                        viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round"
-                                            d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
-                                    </svg>
-                                </button>
-                            </div>
-                        </td>
-                    </tr>
-                    @empty
-                    <tr>
-                        <td colspan="8" class="px-6 py-16 text-center">
-                            <div class="flex flex-col items-center gap-3">
-                                <div class="w-16 h-16 rounded-2xl bg-slate-100 flex items-center justify-center">
-                                    <svg class="w-8 h-8 text-slate-300" fill="none" stroke="currentColor"
-                                        stroke-width="1.5" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round"
-                                            d="M17 20h5v-2a4 4 0 00-5-4M9 20H4v-2a4 4 0 015-4m0 0a4 4 0 108 0 4 4 0 01-8 0z" />
-                                    </svg>
-                                </div>
-                                <p class="text-slate-400 font-semibold">Data kosong.</p>
-                            </div>
-                        </td>
-                    </tr>
-                    @endforelse
-                </tbody>
-            </table>
-        </div>
+                            </td>
+                        </tr>
+                        @empty
+                        <tr>
+                            <td colspan="8" class="px-6 py-16 text-center text-slate-400">
+                                Data kosong.
+                            </td>
+                        </tr>
+                        @endforelse
+                    </tbody>
+                </table>
+            </div>
 
         {{-- Modal Konfirmasi Hapus --}}
         <div x-show="openDelete" x-cloak class="fixed inset-0 z-50 flex items-center justify-center"
@@ -265,5 +226,4 @@
         </div>
         @endif
     </div>
-
 </x-layouts.admin-layout>

@@ -15,18 +15,23 @@ class TeacherController extends Controller
      */
     public function index(Request $request)
     {
-        $sort = $request->sort ?? 'asc';
+        $sort = $request->sort;
         $active = $request->active;
 
-        $teachers = Teacher::orderBy('name', $sort)
-            ->when($request->search, function ($q, $search) {
-                $q->where('name', 'like', "%$search%")
-                    ->orWhere('nip', 'like', "%$search%");
-            })
+        $teachers = Teacher::query()
+
             ->when($active !== null && $active !== '', function ($q) use ($active) {
                 $q->where('active', $active);
             })
-            ->paginate(10);
+
+            ->when($sort, function ($q) use ($sort) {
+                $q->orderBy('name', $sort);
+            }, function ($q) {
+                $q->orderBy('created_at', 'desc');
+            })
+
+            ->paginate(10)
+            ->withQueryString();
 
         return view('admin.teacher.index', compact('teachers', 'sort', 'active'));
     }
