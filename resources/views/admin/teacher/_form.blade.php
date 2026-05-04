@@ -56,13 +56,14 @@
     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
 
         {{-- Nama --}}
-        <div class="md:col-span-2">
+        <div>
             <label class="block text-sm font-bold text-slate-700 mb-2">Nama Lengkap <span
                     class="text-red-500">*</span></label>
             <input type="text" name="name" value="{{ old('name', $teacher->name ?? '') }}"
                 placeholder="Contoh: Budi Santoso, S.Pd" class="w-full px-4 py-3 rounded-xl border text-slate-800 text-sm focus:outline-none focus:ring-2 focus:ring-teal-500 focus:bg-white transition-all
-                {{ $errors->has('name') ? 'border-red-400 bg-red-50' : 'border-slate-200 bg-slate-50' }}"
-                @error('name') <p class="text-red-500 text-xs mt-1.5">{{ $message }}</p>
+                {{ $errors->has('name') ? 'border-red-400 bg-red-50' : 'border-slate-200 bg-slate-50' }}">
+            @error('name')
+            <p class="text-red-500 text-xs mt-1.5">{{ $message }}</p>
             @enderror
         </div>
 
@@ -71,41 +72,9 @@
             <label class="block text-sm font-bold text-slate-700 mb-2">NIP <span class="text-red-500">*</span></label>
             <input type="text" name="nip" value="{{ old('nip', $teacher->nip ?? '') }}"
                 placeholder="Nomor Induk Pegawai" class="w-full px-4 py-3 rounded-xl border text-slate-800 text-sm focus:outline-none focus:ring-2 focus:ring-teal-500 focus:bg-white transition-all
-                {{ $errors->has('name') ? 'border-red-400 bg-red-50' : 'border-slate-200 bg-slate-50' }}" @error('nip')
-                <p class="text-red-500 text-xs mt-1.5">{{ $message }}</p>
-            @enderror
-        </div>
-
-        {{-- Jabatan --}}
-        <div>
-            <label class="block text-sm font-bold text-slate-700 mb-2">Jabatan <span
-                    class="text-red-500">*</span></label>
-            <input type="text" name="position" value="{{ old('position', $teacher->position ?? '') }}"
-                placeholder="Contoh: Guru Matematika" class="w-full px-4 py-3 rounded-xl border text-slate-800 text-sm focus:outline-none focus:ring-2 focus:ring-teal-500 focus:bg-white transition-all
-            {{ $errors->has('name') ? 'border-red-400 bg-red-50' : 'border-slate-200 bg-slate-50' }}"
-                @error('position') <p class="text-red-500 text-xs mt-1.5">{{ $message }}</p>
-            @enderror
-        </div>
-
-        {{-- Golongan --}}
-        <div>
-            <label class="block text-sm font-bold text-slate-700 mb-2">Golongan <span
-                    class="text-red-500">*</span></label>
-            <input type="text" name="group" value="{{ old('group', $teacher->group ?? '') }}"
-                placeholder="Contoh: III/A" class="w-full px-4 py-3 rounded-xl border text-slate-800 text-sm focus:outline-none focus:ring-2 focus:ring-teal-500 focus:bg-white transition-all
-            {{ $errors->has('name') ? 'border-red-400 bg-red-50' : 'border-slate-200 bg-slate-50' }}" @error('group')
-                <p class="text-red-500 text-xs mt-1.5">{{ $message }}</p>
-            @enderror
-        </div>
-
-        {{-- Status --}}
-        <div>
-            <label class="block text-sm font-bold text-slate-700 mb-2">Status <span
-                    class="text-red-500">*</span></label>
-            <input type="text" name="status" value="{{ old('status', $teacher->status ?? '') }}"
-                placeholder="Contoh: PNS / Honorer" class="w-full px-4 py-3 rounded-xl border text-slate-800 text-sm focus:outline-none focus:ring-2 focus:ring-teal-500 focus:bg-white transition-all
-            {{ $errors->has('name') ? 'border-red-400 bg-red-50' : 'border-slate-200 bg-slate-50' }}" @error('status')
-                <p class="text-red-500 text-xs mt-1.5">{{ $message }}</p>
+                {{ $errors->has('nip') ? 'border-red-400 bg-red-50' : 'border-slate-200 bg-slate-50' }}">
+            @error('nip')
+            <p class="text-red-500 text-xs mt-1.5">{{ $message }}</p>
             @enderror
         </div>
 
@@ -115,8 +84,9 @@
                     class="text-red-500">*</span></label>
             <input type="text" name="birth_place" value="{{ old('birth_place', $teacher->birth_place ?? '') }}"
                 placeholder="Contoh: Surabaya" class="w-full px-4 py-3 rounded-xl border text-slate-800 text-sm focus:outline-none focus:ring-2 focus:ring-teal-500 focus:bg-white transition-all
-            {{ $errors->has('name') ? 'border-red-400 bg-red-50' : 'border-slate-200 bg-slate-50' }}"
-                @error('birth_place') <p class="text-red-500 text-xs mt-1.5">{{ $message }}</p>
+            {{ $errors->has('birth_place') ? 'border-red-400 bg-red-50' : 'border-slate-200 bg-slate-50' }}">
+            @error('birth_place')
+            <p class="text-red-500 text-xs mt-1.5">{{ $message }}</p>
             @enderror
         </div>
 
@@ -126,26 +96,76 @@
                     class="text-red-500">*</span></label>
             <input type="date" name="birth_date"
                 value="{{ old('birth_date', isset($teacher) ? $teacher->birth_date?->format('Y-m-d') : '') }}" class="w-full px-4 py-3 rounded-xl border text-slate-800 text-sm focus:outline-none focus:ring-2 focus:ring-teal-500 focus:bg-white transition-all
-            {{ $errors->has('name') ? 'border-red-400 bg-red-50' : 'border-slate-200 bg-slate-50' }}"
-                @error('birth_date') <p class="text-red-500 text-xs mt-1.5">{{ $message }}</p>
+            {{ $errors->has('birth_date') ? 'border-red-400 bg-red-50' : 'border-slate-200 bg-slate-50' }}">
+            @error('birth_date')
+            <p class="text-red-500 text-xs mt-1.5">{{ $message }}</p>
             @enderror
         </div>
 
-        {{-- Tanggal Bergabung --}}
+        {{-- Jabatan --}}
         <div>
-            <label class="block text-sm font-bold text-slate-700 mb-2">Tanggal Bergabung <span
+            <label class="block text-sm font-bold text-slate-700 mb-2">Jabatan <span
                     class="text-red-500">*</span></label>
-            <input type="date" name="join_date"
-                value="{{ old('join_date', isset($teacher) ? $teacher->join_date?->format('Y-m-d') : '') }}" class="w-full px-4 py-3 rounded-xl border text-slate-800 text-sm focus:outline-none focus:ring-2 focus:ring-teal-500 focus:bg-white transition-all
-            {{ $errors->has('name') ? 'border-red-400 bg-red-50' : 'border-slate-200 bg-slate-50' }}"
-                @error('join_date') <p class="text-red-500 text-xs mt-1.5">{{ $message }}</p>
+            <input type="text" name="position" value="{{ old('position', $teacher->position ?? '') }}"
+                placeholder="Contoh: Guru Matematika" class="w-full px-4 py-3 rounded-xl border text-slate-800 text-sm focus:outline-none focus:ring-2 focus:ring-teal-500 focus:bg-white transition-all
+            {{ $errors->has('position') ? 'border-red-400 bg-red-50' : 'border-slate-200 bg-slate-50' }}">
+            @error('position')
+            <p class="text-red-500 text-xs mt-1.5">{{ $message }}</p>
+            @enderror
+        </div>
+
+        {{-- Golongan --}}
+        <div>
+            <label class="block text-sm font-bold text-slate-700 mb-2">
+                Golongan <span class="text-red-500">*</span>
+            </label>
+            <select name="group" class="w-full px-4 py-3 rounded-xl border text-slate-800 text-sm focus:outline-none focus:ring-2 focus:ring-teal-500 focus:bg-white transition-all
+                {{ $errors->has('group') ? 'border-red-400 bg-red-50' : 'border-slate-200 bg-slate-50' }}">
+
+                <option value="">-- Pilih Golongan --</option>
+
+                @php
+                    $golongan = [
+                        'I' => ['A','B','C','D'],
+                        'II' => ['A','B','C','D'],
+                        'III' => ['A','B','C','D'],
+                        'IV' => ['A','B','C','D','E'],
+                    ];
+                @endphp
+
+                @foreach ($golongan as $tingkat => $huruf)
+                <optgroup label="Golongan {{ $tingkat }}">
+                    @foreach ($huruf as $h)
+                    @php $value = $tingkat . '/' . $h; @endphp
+                    <option value="{{ $value }}" {{ old('group', $teacher->group ?? '') == $value ? 'selected' : '' }}>
+                        {{ $value }}
+                    </option>
+                    @endforeach
+                </optgroup>
+                @endforeach
+
+            </select>
+            @error('group')
+            <p class="text-red-500 text-xs mt-1.5">{{ $message }}</p>
+            @enderror
+        </div>
+
+        {{-- Status --}}
+        <div>
+            <label class="block text-sm font-bold text-slate-700 mb-2">Status <span
+                    class="text-red-500">*</span></label>
+            <input type="text" name="status" value="{{ old('status', $teacher->status ?? '') }}"
+                placeholder="Contoh: PNS / Honorer" class="w-full px-4 py-3 rounded-xl border text-slate-800 text-sm focus:outline-none focus:ring-2 focus:ring-teal-500 focus:bg-white transition-all
+            {{ $errors->has('status') ? 'border-red-400 bg-red-50' : 'border-slate-200 bg-slate-50' }}">
+            @error('status')
+            <p class="text-red-500 text-xs mt-1.5">{{ $message }}</p>
             @enderror
         </div>
 
         {{-- Status Aktif --}}
-        <div class="md:col-span-2">
+        <div>
             <label class="block text-sm font-bold text-slate-700 mb-3">Keaktifan</label>
-            <div class="flex items-center gap-6">
+            <div class="flex items-center gap-6 py-3">
                 <label class="flex items-center gap-3 cursor-pointer group">
                     <input type="radio" name="active" value="1" {{ old('active', $teacher->active ?? true) == 1 ?
                     'checked' : '' }}
@@ -163,6 +183,16 @@
             </div>
         </div>
 
+        {{-- Tanggal Bergabung --}}
+        <div>
+            <label class="block text-sm font-bold text-slate-700 mb-2">Tanggal Bergabung <span
+                    class="text-red-500">*</span></label>
+            <input type="date" name="join_date"
+                value="{{ old('join_date', isset($teacher) ? $teacher->join_date?->format('Y-m-d') : '') }}" class="w-full px-4 py-3 rounded-xl border text-slate-800 text-sm focus:outline-none focus:ring-2 focus:ring-teal-500 focus:bg-white transition-all
+            {{ $errors->has('join_date') ? 'border-red-400 bg-red-50' : 'border-slate-200 bg-slate-50' }}">
+            @error('join_date')
+            <p class="text-red-500 text-xs mt-1.5">{{ $message }}</p>
+            @enderror
+        </div>
     </div>
-
 </div>

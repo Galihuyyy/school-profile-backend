@@ -51,6 +51,8 @@
                     class="px-3 py-2.5 rounded-xl bg-slate-200 text-sm text-slate-600 font-semibold focus:outline-none focus:ring-0 cursor-pointer">
                     <option value="asc">A → Z</option>
                     <option value="desc">Z → A</option>
+                    <option value="desc">Terbaru</option>
+                    <option value="asc">Terlama</option>
                 </select>
 
                 {{-- Filter Aktif (backend) --}}
