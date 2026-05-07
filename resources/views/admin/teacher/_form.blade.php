@@ -130,13 +130,17 @@
                         'II' => ['A','B','C','D'],
                         'III' => ['A','B','C','D'],
                         'IV' => ['A','B','C','D','E'],
+                        'IX' => [''],
                     ];
                 @endphp
 
                 @foreach ($golongan as $tingkat => $huruf)
                 <optgroup label="Golongan {{ $tingkat }}">
                     @foreach ($huruf as $h)
-                    @php $value = $tingkat . '/' . $h; @endphp
+                    @php 
+                        $label = '/' . $h;
+                        $value = $h != '' ? $tingkat . $label : $tingkat; 
+                    @endphp
                     <option value="{{ $value }}" {{ old('group', $teacher->group ?? '') == $value ? 'selected' : '' }}>
                         {{ $value }}
                     </option>
