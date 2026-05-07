@@ -2,7 +2,6 @@
     <x-slot name="title">Pengaturan Sekolah</x-slot>
     <x-slot name="subtitle">Konfigurasi detail sekolah</x-slot>
     <div class="bg-white rounded-[2.5rem] shadow-sm border border-slate-200 overflow-hidden" x-data="formHandler(@js($setting))" x-init="init()">
-        <x-admin.notif></x-admin.notif>
         <div class="p-10 border-b border-slate-100 bg-slate-50/50">
             <h3 class="font-bold text-xl text-slate-900">Informasi Umum</h3>
         </div>

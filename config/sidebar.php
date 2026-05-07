@@ -6,14 +6,13 @@ return [
         'icon' => 'settings',
         'route' => 'admin::school-settings.index',
     ],
-    // [
-    //     'title' => 'Master Data',
-    //     'icon' => 'database',
-    //     'children' => [
-    //         [
-    //             'title' => '',
-    //             'route' => '',
-    //         ],
-    //     ],
-    // ],
+    [
+        'title' => 'Management',
+        'children' => [
+            [
+                'title' => 'Guru',
+                'route' => 'admin::teachers.index'
+            ]
+        ]
+    ]
 ];

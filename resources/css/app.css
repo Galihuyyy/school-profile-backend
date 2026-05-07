@@ -27,3 +27,5 @@ body {
 }
 
 @source inline("bg-gradient-to-r from-teal-600 via-teal-500 to-blue-600 bg-clip-text text-transparent");
+
+[x-cloak] { display: none !important; }
