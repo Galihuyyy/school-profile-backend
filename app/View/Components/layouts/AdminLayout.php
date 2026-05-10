@@ -8,12 +8,14 @@ use Illuminate\View\Component;
 
 class AdminLayout extends Component
 {
+
+    public bool $hiddenHeader;
     /**
      * Create a new component instance.
      */
-    public function __construct()
+    public function __construct($hiddenHeader = false)
     {
-        //
+        $this->hiddenHeader = $hiddenHeader;
     }
 
     /**

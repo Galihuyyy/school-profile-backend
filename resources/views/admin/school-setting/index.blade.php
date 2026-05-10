@@ -113,43 +113,48 @@
                     <textarea x-model="form.location" name="location" value="{{ old('location', $setting->location) }}" :disabled="readonly" placeholder="Jl. Raya Teknologi No. 123..." class="w-full p-4 rounded-xl bg-slate-50 border border-slate-200 h-24 focus:ring-2 focus:ring-teal-500 focus:bg-white outline-none transition-all"></textarea>
                 </div>
             </div>
-            <div class="space-y-4">
+            @if (hasPermission('school_info'))
+                <div class="space-y-4">
 
-                @foreach (['instagram', 'facebook', 'tiktok', 'youtube'] as $socmed)
-                    <div class="flex items-center justify-between p-4 rounded-xl border border-slate-200">
-                        <div>
-                            <p class="font-semibold text-slate-700 capitalize">{{ $socmed }}</p>
-                            <p class="text-sm text-slate-400" x-text="form.{{ $socmed }}_url || 'Belum di set'"></p>
+                    @foreach (['instagram', 'facebook', 'tiktok', 'youtube'] as $socmed)
+                        <div class="flex items-center justify-between p-4 rounded-xl border border-slate-200">
+                            <div>
+                                <p class="font-semibold text-slate-700 capitalize">{{ $socmed }}</p>
+                                <p class="text-sm text-slate-400" x-text="form.{{ $socmed }}_url || 'Belum di set'"></p>
+                            </div>
+
+                            <button 
+                                type="button"
+                                @click="openSocmed('{{ $socmed }}_url')"
+                                class="text-teal-600 font-bold hover:underline"
+                            >
+                                <span x-text="form.{{ $socmed }}_url ? 'Edit' : 'Set'"></span>
+                            </button>
                         </div>
+                    @endforeach
+                </div>
+            @endif
 
-                        <button 
-                            type="button"
-                            @click="openSocmed('{{ $socmed }}_url')"
-                            class="text-teal-600 font-bold hover:underline"
-                        >
-                            <span x-text="form.{{ $socmed }}_url ? 'Edit' : 'Set'"></span>
-                        </button>
-                    </div>
-                @endforeach
+            @if (hasPermission('school_info'))
+                <div x-show="readonly" class="pt-10 flex justify-end gap-4 border-t border-slate-100">
+                    <a href="{{ route('admin::school-settings.edit') }}" type="submit" class="px-8 py-3 flex gap-x-3 bg-teal-600 text-white rounded-xl font-bold shadow-lg shadow-teal-600/20 hover:bg-teal-700 hover:-translate-y-1 transition-all">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-5">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L6.832 19.82a4.5 4.5 0 0 1-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 0 1 1.13-1.897L16.863 4.487Zm0 0L19.5 7.125" />
+                        </svg>
+                        Ubah Data
+                    </a>
+                </div>
+                <div x-show="!readonly" class="pt-10 flex justify-end gap-4 border-t border-slate-100">
+                    <button type="button" class="px-8 py-3 cursor-pointer bg-slate-100 text-slate-600 rounded-xl font-bold hover:bg-slate-200 transition-colors">Batalkan</button>
+                    <button type="submit" class="px-8 py-3 cursor-pointer bg-teal-600 text-white rounded-xl font-bold shadow-lg shadow-teal-600/20 hover:bg-teal-700 hover:-translate-y-1 transition-all">Simpan Perubahan</button>
+                </div>
 
-
-            </div>
-
-            <div x-show="readonly" class="pt-10 flex justify-end gap-4 border-t border-slate-100">
-                <a href="{{ route('admin::school-settings.edit') }}" type="submit" class="px-8 py-3 flex gap-x-3 bg-teal-600 text-white rounded-xl font-bold shadow-lg shadow-teal-600/20 hover:bg-teal-700 hover:-translate-y-1 transition-all">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-5">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L6.832 19.82a4.5 4.5 0 0 1-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 0 1 1.13-1.897L16.863 4.487Zm0 0L19.5 7.125" />
-                    </svg>
-                    Ubah Data
-                </a>
-            </div>
-            <div x-show="!readonly" class="pt-10 flex justify-end gap-4 border-t border-slate-100">
-                <button type="button" class="px-8 py-3 cursor-pointer bg-slate-100 text-slate-600 rounded-xl font-bold hover:bg-slate-200 transition-colors">Batalkan</button>
-                <button type="submit" class="px-8 py-3 cursor-pointer bg-teal-600 text-white rounded-xl font-bold shadow-lg shadow-teal-600/20 hover:bg-teal-700 hover:-translate-y-1 transition-all">Simpan Perubahan</button>
-            </div>
+            @endif
         </form>
 
-        @include('admin.school-setting.socmed-modal')
+        @if (hasPermission('school_info'))
+            @include('admin.school-setting.socmed-modal')
+        @endif
     </div>
 
     <x-slot name="scripts">

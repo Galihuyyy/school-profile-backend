@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Middleware\hasPermission;
 use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Configuration\Exceptions;
 use Illuminate\Foundation\Configuration\Middleware;
@@ -16,7 +17,10 @@ return Application::configure(basePath: dirname(__DIR__))
         }
     )
     ->withMiddleware(function (Middleware $middleware) {
-        //
+        $middleware->redirectGuestsTo(fn () => route('admin::login'));
+        $middleware->alias([
+            'hasPermission' => hasPermission::class
+        ]);
     })
     ->withExceptions(function (Exceptions $exceptions) {
         //
