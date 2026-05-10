@@ -53,7 +53,7 @@ class DepartmentController extends Controller
 
             Department::create($data);
             DB::commit();
-            return redirect()->route('admin::department.index')->with('success', 'Data jurusan berhasil ditambahkan.');
+            return redirect()->route('admin::departments.index')->with('success', 'Data jurusan berhasil ditambahkan.');
         } catch (\Throwable $th) {
             DB::rollBack();
             return back()->withInput()->with('error', 'Gagal menambah data: ' . $th->getMessage());
@@ -65,7 +65,7 @@ class DepartmentController extends Controller
      */
     public function show(Department $department)
     {
-        $department->loads('headTeacher');
+        $department->load('headTeacher');
 
         return view('admin.department.show', compact('department'));
     }
@@ -98,7 +98,7 @@ class DepartmentController extends Controller
             $department->update($data);
 
             DB::commit();
-            return view('admin.department.index')->with('success', 'Data jurusan berhasil diperbarui.');
+            return redirect()->route('admin::departments.index')->with('success', 'Data jurusan berhasil diperbarui.');
         } catch (\Throwable $th) {
             DB::rollBack();
             return back()->withInput()->with('error', 'Gagal memperbarui data: ' . $th->getMessage());
