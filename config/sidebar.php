@@ -7,7 +7,7 @@ return [
         'route' => 'admin::school-settings.index',
     ],
     [
-        'title' => 'Management',
+        'title' => 'MANAGEMENT',
         'children' => [
             [
                 'title' => 'Guru',

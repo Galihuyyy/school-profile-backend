@@ -27,45 +27,52 @@
             @foreach (config('sidebar') as $item)
                 {{-- SINGLE MENU --}}
                 @if (!isset($item['children']))
-                    <a href="{{ route($item['route']) }}"
-                        class="flex items-center gap-4 px-4 py-3 rounded-xl transition-all
-                        {{ isActive($item['route']) ? 'bg-teal-50 text-teal-600 shadow-sm' : 'text-slate-400 hover:text-teal-600' }}">
+                    @if ( !isset($item['permission']) || hasPermission($item['permission']) )
+                        <a href="{{ route($item['route']) }}"
+                            class="flex items-center gap-4 px-4 py-3 rounded-xl transition-all hover:pl-5
+                            {{ isActive($item['route']) ? 'bg-teal-50 text-teal-600 shadow-sm' : 'text-slate-400 hover:text-teal-600' }}">
 
-                        <span class="font-bold">{{ $item['title'] }}</span>
-                    </a>
+                            <span class="font-bold">{{ $item['title'] }}</span>
+                        </a>
+                    @endif
                 @endif
 
 
                 {{-- GROUP MENU --}}
                 @if (isset($item['children']))
                     @php $open = isGroupActive($item['children']); @endphp
+                    
+                    @if (isset($item['children']))
+                        <div>
+                            <div
+                                class="px-4 py-3 font-semibold tracking-wider text-sm
+                                {{ $open ? 'text-teal-600' : 'text-slate-400' }}">
+                                {{ $item['title'] }}
+                            </div>
 
-                    <div>
-                        <div
-                            class="px-4 py-3 font-bold cursor-pointer
-                            {{ $open ? 'text-teal-600' : 'text-slate-400' }}">
-                            {{ $item['title'] }}
+                            <div class="ml-4 space-y-1">
+                                @foreach ($item['children'] as $child)
+                                    @if ( !isset($child['permission']) || hasPermission($child['permission']) )
+                                        <a href="{{ route($child['route']) }}"
+                                            class="block px-4 py-2 rounded-lg text-sm transition-all hover:pl-5
+                                            {{ isActive($child['route']) ? 'bg-teal-50 text-teal-600' : 'text-slate-400 hover:text-teal-600' }}">
+
+                                            {{ $child['title'] }}
+                                        </a>
+                                    @endif
+                                @endforeach
+                            </div>
                         </div>
-
-                        <div class="ml-4 space-y-1">
-                            @foreach ($item['children'] as $child)
-                                <a href="{{ route($child['route']) }}"
-                                    class="block px-4 py-2 rounded-lg text-sm transition-all
-                                    {{ isActive($child['route']) ? 'bg-teal-50 text-teal-600' : 'text-slate-400 hover:text-teal-600' }}">
-
-                                    {{ $child['title'] }}
-                                </a>
-                            @endforeach
-                        </div>
-                    </div>
+                    @endif
                 @endif
             @endforeach
         </nav>
     </div>
 
-    <div class="mt-auto p-8 border-t border-slate-100">
-        <button class="flex items-center gap-3 text-red-500 font-bold hover:gap-5 transition-all">
+    <form class="mt-auto p-8 border-t border-slate-100" method="POST" action="{{ route('admin::logout') }}">
+        @csrf
+        <button type="submit" class="flex items-center gap-3 text-red-500 font-bold hover:gap-5 transition-all">
             <span>Logout</span>
         </button>
-    </div>
+    </form>
 </aside>
