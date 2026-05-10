@@ -22,6 +22,15 @@ return new class extends Migration
             $table->timestamps();
         });
 
+        Schema::create('user_permissions', function (Blueprint $table) {
+            $table->id();
+            $table->foreignId('user_id')->constrained()->cascadeOnDelete();
+            $table->string('slug');
+            $table->timestamps();
+
+            $table->unique(['user_id', 'slug']);
+        });
+
         Schema::create('password_reset_tokens', function (Blueprint $table) {
             $table->string('email')->primary();
             $table->string('token');
