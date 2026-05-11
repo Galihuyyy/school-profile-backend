@@ -52,17 +52,7 @@
                     </div>
 
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                        @php
-                            $permissions = [
-                                ['id' => 'school_info', 'label' => 'Merubah Info Sekolah', 'desc' => 'Identitas, logo, dan profil'],
-                                ['id' => 'manage_teacher', 'label' => 'Manajemen Guru', 'desc' => 'Tambah, edit, hapus guru'],
-                                ['id' => 'manage_admin', 'label' => 'Manajemen Admin', 'desc' => 'Kontrol penuh akun admin'],
-                                ['id' => 'manage_post', 'label' => 'Manajemen Post', 'desc' => 'Berita dan artikel sekolah'],
-                                ['id' => 'manage_job', 'label' => 'Manajemen Lowongan', 'desc' => 'Info karir dan pekerjaan'],
-                            ];
-                        @endphp
-
-                        @foreach($permissions as $permission)
+                        @foreach(config('userPermission') as $permission)
                         <label class="group flex items-start gap-4 p-4 rounded-3xl border border-slate-100 bg-slate-50 hover:bg-teal-50 hover:border-teal-200 transition-all cursor-pointer">
                             <div class="mt-1">
                                 <input type="checkbox" x-model="form.permissions" name="permissions[]" value="{{ $permission['id'] }}" class="w-5 h-5 rounded-lg text-teal-600 focus:ring-teal-500 border-slate-300">
