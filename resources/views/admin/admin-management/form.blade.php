@@ -59,6 +59,7 @@
                                 ['id' => 'manage_admin', 'label' => 'Manajemen Admin', 'desc' => 'Kontrol penuh akun admin'],
                                 ['id' => 'manage_post', 'label' => 'Manajemen Post', 'desc' => 'Berita dan artikel sekolah'],
                                 ['id' => 'manage_job', 'label' => 'Manajemen Lowongan', 'desc' => 'Info karir dan pekerjaan'],
+                                ['id' => 'manage_department', 'label' => 'Manajemen Jurusan', 'desc' => 'Kontrol penuh jurusan sekolah'],
                             ];
                         @endphp
 
