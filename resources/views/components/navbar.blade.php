@@ -13,6 +13,7 @@
             <li class="hover:text-gray-900 transition capitalize"><a href="#jurusan">jurusan</a></li>
             <li class="hover:text-gray-900 transition capitalize"><a href="#guru">guru</a></li>
             <li class="hover:text-gray-900 transition capitalize"><a href="#berita">berita</a></li>
+            <li class="hover:text-gray-900 transition capitalize"><a href="/lowongan">lowongan</a></li>
             <li class="hover:text-gray-900 transition capitalize"><a href="#kontak">kontak</a></li>
         </ul>
 
