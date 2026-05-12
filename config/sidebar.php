@@ -13,6 +13,10 @@ return [
                 'title' => 'Guru',
                 'route' => 'admin::teachers.index',
             ],
+            [
+                'title' => 'Lowongan',
+                'route' => 'admin::jobs.index',
+            ],
         ]
     ]
 ];

@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\admin\auth\LoginController;
+use App\Http\Controllers\JobController;
 use App\Http\Controllers\ManageAdminController;
 use App\Http\Controllers\SchoolSettingController;
 use App\Http\Controllers\TeacherController;
@@ -46,11 +47,17 @@ Route::prefix('admin')->name('admin::')->middleware('web')->group(function () {
             Route::resource('manage-admins', ManageAdminController::class)->parameters(['manage-admins' => 'admin'])->except('index')->names('admins');
             Route::view('/manage-admins/create/success', 'admin.admin-management.create-success')->name('admins.create.success');
         });
-    
+        
         // crud departments
         Route::prefix('/departments')->name('departments.')->group(function () {
             // route departments in progress
         });
+            
+        Route::resource('manage-jobs', JobController::class)->parameters(['manage-jobs' => 'job'])->names('jobs');
+        Route::middleware('hasPermission:manage_admin')->group(function () {
+            Route::resource('manage-jobs', JobController::class)->parameters(['manage-jobs' => 'job'])->except('index')->names('jobs');
+        });
+
     });
     // school setting
 });
