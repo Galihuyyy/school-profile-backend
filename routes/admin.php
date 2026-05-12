@@ -25,6 +25,7 @@ Route::prefix('admin')->name('admin::')->middleware('web')->group(function () {
     Route::middleware('auth')->group(function () {
         Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
         
+        // school setting
         Route::prefix('/school-settings')->name('school-settings')->group(function () {
             Route::get('/', [SchoolSettingController::class, 'index'])->name('.index');
 
@@ -38,13 +39,13 @@ Route::prefix('admin')->name('admin::')->middleware('web')->group(function () {
         // crud teacher
         Route::resource('manage-teachers', TeacherController::class)->names('teachers');
         Route::middleware('hasPermission:manage_teacher')->group(function () {
-            Route::resource('manage-teachers', TeacherController::class)->except('index')->names('teachers');
+            Route::resource('manage-teachers', TeacherController::class)->except(['index', 'show'])->names('teachers');
         });
         
         // crud admin
         Route::resource('manage-admins', ManageAdminController::class)->parameters(['manage-admins' => 'admin'])->names('admins');
         Route::middleware('hasPermission:manage_admin')->group(function () {
-            Route::resource('manage-admins', ManageAdminController::class)->parameters(['manage-admins' => 'admin'])->except('index')->names('admins');
+            Route::resource('manage-admins', ManageAdminController::class)->parameters(['manage-admins' => 'admin'])->except(['index', 'show'])->names('admins');
             Route::view('/manage-admins/create/success', 'admin.admin-management.create-success')->name('admins.create.success');
         });
         
@@ -54,10 +55,9 @@ Route::prefix('admin')->name('admin::')->middleware('web')->group(function () {
         });
             
         Route::resource('manage-jobs', JobController::class)->parameters(['manage-jobs' => 'job'])->names('jobs');
-        Route::middleware('hasPermission:manage_admin')->group(function () {
-            Route::resource('manage-jobs', JobController::class)->parameters(['manage-jobs' => 'job'])->except('index')->names('jobs');
+        Route::middleware('hasPermission:manage_job')->group(function () {
+            Route::resource('manage-jobs', JobController::class)->parameters(['manage-jobs' => 'job'])->except(['index', 'show'])->names('jobs');
         });
 
     });
-    // school setting
 });

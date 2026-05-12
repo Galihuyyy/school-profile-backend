@@ -162,16 +162,18 @@
                                         👁
                                     </a>
 
-                                    <a href="{{ route('admin::jobs.edit', $job) }}"
-                                       class="flex h-8 w-8 items-center justify-center rounded-lg bg-slate-100 text-slate-500 transition-colors hover:bg-amber-50 hover:text-amber-600">
-                                        ✏️
-                                    </a>
+                                    @if (hasPermission('manage_job'))
+                                        <a href="{{ route('admin::jobs.edit', $job) }}"
+                                        class="flex h-8 w-8 items-center justify-center rounded-lg bg-slate-100 text-slate-500 transition-colors hover:bg-amber-50 hover:text-amber-600">
+                                            ✏️
+                                        </a>
 
-                                    <button type="button"
-                                            @click="openDelete = true; deleteRecord = {{ $job }}; deleteTitle = '{{ $job->title }}'"
-                                            class="flex h-8 w-8 items-center justify-center rounded-lg bg-slate-100 text-slate-500 transition-colors hover:bg-red-50 hover:text-red-600">
-                                        🗑
-                                    </button>
+                                        <button type="button"
+                                                @click="openDelete = true; deleteRecord = {{ $job }}; deleteTitle = '{{ $job->title }}'"
+                                                class="flex h-8 w-8 items-center justify-center rounded-lg bg-slate-100 text-slate-500 transition-colors hover:bg-red-50 hover:text-red-600">
+                                            🗑
+                                        </button>
+                                    @endif
                                 </div>
                             </td>
                         </tr>
