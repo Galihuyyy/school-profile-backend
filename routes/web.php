@@ -9,6 +9,13 @@ Route::fallback(function () {
 
 Route::name('user::')->group(function() {
     Route::get('/', [UserController::class, 'index'])->name('index');
+    
+    Route::prefix('lowongan')->name('jobs.')->group(function() {
+        Route::get('/', [UserController::class, 'jobIndex'])->name('index');
+        Route::get('/{lowongan}', [UserController::class, 'jobShow'])->name('show');
+        
+    });
+    
     Route::get('/test', function() {
         return view('guest.detail-berita');
     });
