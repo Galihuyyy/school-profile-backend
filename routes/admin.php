@@ -1,13 +1,10 @@
 <?php
 
 use App\Http\Controllers\admin\auth\LoginController;
-use App\Http\Controllers\JobController;
-use App\Http\Controllers\ManageAdminController;
-use App\Http\Controllers\SchoolSettingController;
-use App\Http\Controllers\TeacherController;
-use App\Mail\VerifyAdminEmail;
-use App\Models\User;
-use Illuminate\Support\Facades\Mail;
+use App\Http\Controllers\admin\JobController;
+use App\Http\Controllers\admin\ManageAdminController;
+use App\Http\Controllers\admin\SchoolSettingController;
+use App\Http\Controllers\admin\TeacherController;
 use Illuminate\Support\Facades\Route;
 
 Route::prefix('admin')->name('admin::')->middleware('web')->group(function () {

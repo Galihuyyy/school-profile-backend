@@ -12,4 +12,10 @@ class UserController extends Controller
 
         return view('guest.index', compact('schoolSetting'));
     }
+
+    public function jobIndex(){
+
+    
+        return view('guest.jobs.index');
+    }
 }
