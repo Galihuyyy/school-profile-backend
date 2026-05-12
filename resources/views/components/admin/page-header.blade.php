@@ -1,4 +1,4 @@
-<header class="flex justify-between items-center mb-12" x-data="{ active : false }">
+<header class="flex justify-between items-center mb-12" x-data="{ active : false }" x-cloak>
     <div>
         <h2 class="text-3xl font-extrabold text-slate-900">{{ $title ?? '' }}</h2>
         <p class="text-slate-500 mt-1">{{ $subtitle ?? '' }}</p>
