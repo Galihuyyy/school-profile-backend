@@ -8,13 +8,13 @@
 
         <!-- Menu -->
         <ul class="hidden md:flex items-center gap-6 text-sm font-medium text-gray-600">
-            <li class="hover:text-gray-900 transition capitalize"><a href="#beranda">beranda</a></li>
-            <li class="hover:text-gray-900 transition capitalize"><a href="#profil">profil</a></li>
-            <li class="hover:text-gray-900 transition capitalize"><a href="#jurusan">jurusan</a></li>
-            <li class="hover:text-gray-900 transition capitalize"><a href="#guru">guru</a></li>
-            <li class="hover:text-gray-900 transition capitalize"><a href="#berita">berita</a></li>
+            <li class="hover:text-gray-900 transition capitalize"><a href="/#beranda">beranda</a></li>
+            <li class="hover:text-gray-900 transition capitalize"><a href="/#profil">profil</a></li>
+            <li class="hover:text-gray-900 transition capitalize"><a href="/#jurusan">jurusan</a></li>
+            <li class="hover:text-gray-900 transition capitalize"><a href="/#guru">guru</a></li>
+            <li class="hover:text-gray-900 transition capitalize"><a href="/#berita">berita</a></li>
             <li class="hover:text-gray-900 transition capitalize"><a href="/lowongan">lowongan</a></li>
-            <li class="hover:text-gray-900 transition capitalize"><a href="#kontak">kontak</a></li>
+            <li class="hover:text-gray-900 transition capitalize"><a href="/#kontak">kontak</a></li>
         </ul>
 
     </div>
