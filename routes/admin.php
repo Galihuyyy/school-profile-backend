@@ -3,6 +3,7 @@
 use App\Http\Controllers\admin\auth\LoginController;
 use App\Http\Controllers\admin\JobController;
 use App\Http\Controllers\admin\ManageAdminController;
+use App\Http\Controllers\admin\PostsController;
 use App\Http\Controllers\admin\SchoolSettingController;
 use App\Http\Controllers\admin\TeacherController;
 use Illuminate\Support\Facades\Route;
@@ -54,6 +55,11 @@ Route::prefix('admin')->name('admin::')->middleware('web')->group(function () {
         Route::resource('manage-jobs', JobController::class)->parameters(['manage-jobs' => 'job'])->names('jobs');
         Route::middleware('hasPermission:manage_job')->group(function () {
             Route::resource('manage-jobs', JobController::class)->parameters(['manage-jobs' => 'job'])->except(['index', 'show'])->names('jobs');
+        });
+
+        Route::resource('posts', PostsController::class)->names('posts');
+        Route::middleware('hasPermission:manage_post')->group(function () {
+            Route::resource('posts', PostsController::class)->except(['index', 'show'])->names('posts');
         });
 
     });
