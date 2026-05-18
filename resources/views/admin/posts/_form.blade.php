@@ -1,3 +1,13 @@
+<x-slot name="styles">
+    <link rel="stylesheet" href="/assets/vendor/ckeditor5.css">
+
+    <style>
+        .ck-hidden-textarea {
+            display: none;
+        }
+    </style>
+</x-slot>
+
 <div class="grid gap-8 lg:grid-cols-[1fr_360px]"x-data="thumbnailUploader()">
     <div class="space-y-6">
         <div class="rounded-4xl border border-zinc-200 bg-white p-8 shadow-sm">
@@ -27,7 +37,15 @@
                 </label>
 
                 <div class="mt-3 rounded-3xl border border-zinc-200 bg-zinc-50 p-4">
-                    <textarea name="content" :disabled="readonly" rows="16" class="w-full resize-none bg-transparent text-sm leading-7 text-zinc-700 focus:outline-none" placeholder="Tulis isi post di sini...">{{ old('content', $post->content ?? '') }}</textarea>
+                    @if ($mode == 'create' || $mode == 'edit')
+                        <textarea name="content" id="editor" :disabled="readonly" rows="16" class="ck-hidden-textarea w-full resize-none bg-transparent text-sm leading-7 text-zinc-700 focus:outline-none" placeholder="Tulis isi post di sini...">{{ old('content', $post->content ?? '') }}</textarea>
+                    @endif
+
+                    @if ($mode == 'show')
+                        <div class="prose max-w-full">
+                            {!! $post->content !!}
+                        </div>
+                    @endif
                 </div>
             </div>
         </div>
@@ -117,4 +135,5 @@
     </div>
 </div>
 
-@include('admin.posts.script')
+@include('admin.posts.scripts.ckeditor')
+@include('admin.posts.scripts.script')

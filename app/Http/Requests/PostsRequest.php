@@ -27,7 +27,7 @@ class PostsRequest extends FormRequest
         return [
             'title' => [$isUpdate ? 'sometimes' : 'required', 'string', 'max:150'],
             'slug' => [$isUpdate ? 'sometimes' : 'required', 'string', 'max:50'],
-            'content' => [$isUpdate ? 'sometimes' : 'required', 'string', 'max:50'],
+            'content' => [$isUpdate ? 'sometimes' : 'required', 'string'],
             'thumbnail' => [$isUpdate ? 'sometimes' : 'nullable', 'image', 'mimes:jpg,jpeg,png,webp', 'max:2048'],
             'category_id' => [$isUpdate ? 'sometimes' : 'required', 'integer', 'exists:ms_post_categories,id'],
             'status' => [$isUpdate ? 'sometimes' : 'required', 'string'],

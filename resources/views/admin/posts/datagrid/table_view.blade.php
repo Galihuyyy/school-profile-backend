@@ -28,7 +28,7 @@
                                 </h3>
 
                                 <p class="mt-1 line-clamp-1 text-sm text-zinc-500">
-                                    {{ $post->content }}
+                                    {{ Str::limit(strip_tags($post->content), 120) }}
                                 </p>
                             </div>
                         </a>

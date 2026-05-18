@@ -30,6 +30,39 @@ button {
     cursor: pointer;
 }
 
+blockquote {
+    border-left: 4px solid teal;
+    padding-left: 1rem;
+    margin: 1.5rem 0;
+    color: #52525b;
+    font-style: italic;
+    background: rgba(0, 128, 128, .08);
+    padding-top: 0.75rem;
+    padding-bottom: 0.75rem;
+    border-radius: 0.5rem;
+}
+
+pre {
+    background: #222238;
+    color: #f4f4f5;
+    padding: 1.25rem;
+    border-radius: 1rem;
+    overflow-x: auto;
+    margin: 1.5rem 0;
+    font-size: 0.95rem;
+    line-height: 1.7;
+    font-family: 'Fira Code', 'Consolas', monospace;
+    box-shadow: 0 4px 20px rgba(35, 35, 35, 0.08);
+}
+
+pre code {
+    background: transparent;
+    padding: 0;
+    color: inherit;
+    font-size: inherit;
+    font-family: inherit;
+}
+
 @source inline("bg-gradient-to-r from-teal-600 via-teal-500 to-blue-600 bg-clip-text text-transparent");
 
 [x-cloak] { display: none !important; }
