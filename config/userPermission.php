@@ -6,6 +6,7 @@ $permissions = [
     ['id' => 'manage_admin', 'label' => 'Manajemen Admin', 'desc' => 'Kontrol penuh akun admin'],
     ['id' => 'manage_post', 'label' => 'Manajemen Post', 'desc' => 'Berita dan artikel sekolah'],
     ['id' => 'manage_job', 'label' => 'Manajemen Lowongan', 'desc' => 'Info karir dan pekerjaan'],
+    ['id' => 'manage_department', 'label' => 'Manajemen Jurusan', 'desc' => 'Tambah, edit, hapus jurusan'],
 ];
 
 return $permissions;

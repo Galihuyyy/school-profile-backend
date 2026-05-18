@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('ms_departments', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('head_teacher_id')->constrained('ms_teachers', 'id');
+            $table->foreignId('head_teacher_id')->constrained('ms_teachers', 'id')->unique();
             $table->string('image');
             $table->string('name', 150);
             $table->text('description');

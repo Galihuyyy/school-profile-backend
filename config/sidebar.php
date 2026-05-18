@@ -21,8 +21,6 @@ return [
                 'title' => 'Posts',
                 'route' => 'admin::posts.index',
             ],
-                'route' => 'admin::teachers.index'
-            ],
             [
                 'title' => 'Jurusan',
                 'route' => 'admin::departments.index'

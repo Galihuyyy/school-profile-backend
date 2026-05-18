@@ -54,14 +54,9 @@ Route::prefix('admin')->name('admin::')->middleware('web')->group(function () {
         });
         
         // crud departments
-        Route::prefix('/departments')->name('departments.')->group(function () {
-            Route::get('/', [DepartmentController::class, 'index'])->name('index');
-        Route::get('/create', [DepartmentController::class, 'create'])->name('create');
-        Route::get('/{department}', [DepartmentController::class, 'show'])->name('show');
-        Route::get('/{department}/edit', [DepartmentController::class, 'edit'])->name('edit');
-        Route::post('/', [DepartmentController::class, 'store'])->name('store');
-        Route::put('/{department}', [DepartmentController::class, 'update'])->name('update');
-        Route::delete('/{department}', [DepartmentController::class, 'destroy'])->name('destroy');
+        Route::resource('manage-departments', DepartmentController::class)->names('departments');
+        Route::middleware('hasPermission:manage_department')->group(function () {
+            Route::resource('manage-departments', DepartmentController::class)->except(['index', 'show'])->names('departments');
         });
             
         Route::resource('manage-jobs', JobController::class)->parameters(['manage-jobs' => 'job'])->names('jobs');
