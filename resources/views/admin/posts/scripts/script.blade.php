@@ -1,3 +1,4 @@
+
 <script>
     function thumbnailUploader(defaultPreview = null) {
         return {
