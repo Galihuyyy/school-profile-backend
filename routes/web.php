@@ -15,11 +15,11 @@ Route::name('user::')->group(function() {
         Route::get('/{lowongan}', [UserController::class, 'jobShow'])->name('show');
         
     });
+
+    Route::get('/berita/{post}', [UserController::class, 'postShow'])->name('post.show');
     
-    Route::get('/test', function() {
-        return view('guest.detail-berita');
-    });
     Route::get('/test-create', function() {
         return view('guest.pages.guru.list-guru');
     });
+
 });

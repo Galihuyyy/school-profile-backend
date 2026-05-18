@@ -17,6 +17,10 @@ return [
                 'title' => 'Lowongan',
                 'route' => 'admin::jobs.index',
             ],
+            [
+                'title' => 'Posts',
+                'route' => 'admin::posts.index',
+            ],
         ]
     ]
 ];

@@ -52,4 +52,9 @@ class User extends Authenticatable
     {
         return $this->hasMany(UserPermission::class, 'user_id');
     }
+
+    public function posts()
+    {
+        return $this->hasMany(Post::class, 'created_by');
+    }
 }
