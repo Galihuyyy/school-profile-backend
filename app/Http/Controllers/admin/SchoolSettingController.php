@@ -12,7 +12,7 @@ class SchoolSettingController extends Controller
 {
     private function setting()
     {
-        return $this->setting();
+        return SchoolSettings::first();
     }
     
     /**

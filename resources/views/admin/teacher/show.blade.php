@@ -29,8 +29,7 @@
                 </div>
 
                 @if ($teacher->active)
-                    <span>
-                        class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-teal-50 text-teal-700 text-xs font-bold">
+                    <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-teal-50 text-teal-700 text-xs font-bold">
                         <span class="w-1.5 h-1.5 rounded-full bg-teal-500"></span>
                         Aktif
                     </span>

@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::prefix('admin')->name('admin::')->middleware('web')->group(function () {
 
-    Route::prefix('/auth')->group(function () {
+    Route::prefix('/auth')->middleware('guest')->group(function () {
         Route::view('/', 'admin.auth.login')->name('login');
         Route::post('/', [LoginController::class, 'loginProcess'])->name('login.process');
     });

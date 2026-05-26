@@ -26,11 +26,11 @@
     }">
 
         {{-- TOOLBAR --}}
-        <div class="mb-6 flex flex-col justify-between gap-4 sm:flex-row sm:items-center">
+        <div class="mb-6 flex max-xl:flex-col-reverse justify-between gap-4">
             <div class="flex w-full items-center gap-2 sm:w-auto">
 
                 {{-- Search --}}
-                <div class="relative w-full sm:w-80">
+                <div class="relative w-full xl:w-80">
                     <svg class="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-slate-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-4.35-4.35M17 11A6 6 0 115 11a6 6 0 0112 0z" />
                     </svg>
@@ -63,7 +63,7 @@
 
             {{-- Tambah --}}
             @if (hasPermission('manage_job'))
-            <a href="{{ route('admin::jobs.create') }}" class="flex items-center gap-2 whitespace-nowrap rounded-xl bg-teal-600 px-5 py-2.5 text-sm font-bold text-white shadow-sm transition-colors hover:bg-teal-700">
+            <a href="{{ route('admin::jobs.create') }}" class="w-fit max-xl:self-end flex items-center gap-2 whitespace-nowrap rounded-xl bg-teal-600 px-5 py-2.5 text-sm font-bold text-white shadow-sm transition-colors hover:bg-teal-700">
                 <svg class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4" />
                 </svg>

@@ -4,8 +4,8 @@
 
         <div class="mx-auto max-w-7xl" x-data="postsPage()">
             @if (hasPermission('manage_post'))
-                <div class="w-full flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-end">
-                    <a href="{{ route('admin::posts.create') }}" class="inline-flex items-center gap-2 rounded-2xl bg-zinc-900 px-5 py-3 text-sm font-semibold text-white transition hover:-translate-y-0.5 hover:bg-zinc-800">
+                <div class="w-full flex gap-4 lg:flex-row lg:items-center justify-end">
+                    <a href="{{ route('admin::posts.create') }}" class="w-fit inline-flex items-center gap-2 rounded-2xl bg-zinc-900 px-5 py-3 text-sm font-semibold text-white transition hover:-translate-y-0.5 hover:bg-zinc-800">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="h-5 w-5">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
                         </svg>

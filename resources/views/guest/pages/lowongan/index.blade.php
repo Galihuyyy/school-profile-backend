@@ -41,7 +41,7 @@
 
     <section class="max-w-7xl mx-auto px-6 py-14">
         @if ($jobs->count())
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+            <div class="grid grid-cols-2 lg:grid-cols-3 gap-6">
                 @foreach ($jobs as $job)
                     <div class="group bg-white rounded-3xl border border-slate-100 hover:border-teal-200 shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden">
                         <div class="p-7">
@@ -67,7 +67,7 @@
                             </div>
 
                             {{-- INFO --}}
-                            <div class="mt-6 grid grid-cols-2 gap-4">
+                            <div class="mt-6 grid grid-cols-1 md:grid-cols-2 gap-4">
                                 <div class="rounded-2xl bg-slate-50 p-4">
                                     <p class="text-xs font-bold uppercase tracking-wider text-slate-400">
                                         Lokasi
@@ -122,7 +122,7 @@
                         </div>
 
                         {{-- FOOTER --}}
-                        <div class="px-7 py-5 border-t border-slate-100 bg-slate-50/70 flex items-center justify-between">
+                        <div class="px-7 py-5 border-t border-slate-100 bg-slate-50/70 flex flex-wrap gap-y-3 items-center justify-between">
                             <div>
                                 <p class="text-xs text-slate-400">
                                     Dipublish
@@ -133,7 +133,7 @@
                                 </p>
                             </div>
 
-                            <div class="flex items-center gap-3">
+                            <div class="w-full flex items-center justify-center gap-3">
                                 <a href="{{ route('user::jobs.show', $job) }}" class="px-5 py-2.5 rounded-xl bg-white border border-slate-200 hover:border-teal-200 hover:text-teal-700 text-slate-700 text-sm font-bold transition-all">
                                     Detail
                                 </a>

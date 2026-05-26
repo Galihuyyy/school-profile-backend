@@ -1,9 +1,9 @@
-<header class="flex justify-between items-center mb-12" x-data="{ active : false }" x-cloak>
-    <div>
+<header class="flex flex-col-reverse gap-y-6 md:flex-row justify-between items-center mb-12" x-data="{ active : false }" x-cloak>
+    <div class="max-md:self-start">
         <h2 class="text-3xl font-extrabold text-slate-900">{{ $title ?? '' }}</h2>
         <p class="text-slate-500 mt-1">{{ $subtitle ?? '' }}</p>
     </div>
-    <div class=" relative">
+    <div class="max-md:self-end relative">
         <div class="text-right flex items-center gap-4 cursor-pointer" x-on:click="active = !active">
             <div>
                 <p class="font-bold text-slate-900">Administrator</p>

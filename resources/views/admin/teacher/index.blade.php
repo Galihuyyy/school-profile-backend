@@ -18,10 +18,9 @@
     }">
 
         {{-- TOOLBAR --}}
-        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
-            <div class="flex items-center gap-2 w-full sm:w-auto">
-
-                <div class="relative w-full sm:w-72">
+        <div class="flex max-xl:flex-col-reverse justify-between gap-4 mb-6">
+            <div class="flex items-center gap-2 w-full md:w-auto">
+                <div class="relative w-full md:w-72">
                     <svg class="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400 pointer-events-none" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-4.35-4.35M17 11A6 6 0 115 11a6 6 0 0112 0z" />
                     </svg>
@@ -50,7 +49,7 @@
             </div>
 
             @if (hasPermission('manage_teacher'))
-                <a href="{{ route('admin::teachers.create') }}" class="flex items-center gap-2 px-5 py-2.5 bg-teal-600 hover:bg-teal-700 text-white rounded-xl text-sm font-bold transition-colors shadow-sm whitespace-nowrap">
+                <a href="{{ route('admin::teachers.create') }}" class="self-end w-fit flex items-center gap-2 px-5 py-2.5 bg-teal-600 hover:bg-teal-700 text-white rounded-xl text-sm font-bold transition-colors shadow-sm whitespace-nowrap">
                     <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4" />
                     </svg>
