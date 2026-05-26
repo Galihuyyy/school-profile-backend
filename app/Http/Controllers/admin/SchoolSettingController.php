@@ -10,13 +10,18 @@ use Illuminate\Support\Facades\Storage;
 
 class SchoolSettingController extends Controller
 {
+    private function setting()
+    {
+        return $this->setting();
+    }
+    
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
         $mode = "index";
-        $setting = SchoolSettings::first();
+        $setting = $this->setting();
         $setting->logo = asset('storage/' . $setting->logo);
         return view('admin.school-setting.index', compact('setting', 'mode'));
     }
@@ -27,7 +32,7 @@ class SchoolSettingController extends Controller
     public function edit()
     {
         $mode = "edit";
-        $setting = SchoolSettings::first();
+        $setting = $this->setting();
         return view('admin.school-setting.index', compact('setting', 'mode'));
     }
 
@@ -50,7 +55,7 @@ class SchoolSettingController extends Controller
 
         DB::beginTransaction();
         try {
-            $setting = SchoolSettings::first();
+            $setting = $this->setting();
 
             if ($request->hasFile('logo')) {
                 $newPath = $request->file('logo')->store('logos', 'public');
@@ -85,7 +90,7 @@ class SchoolSettingController extends Controller
             'url' => 'nullable|url'
         ]);
 
-        $setting = SchoolSettings::first();
+        $setting = $this->setting();
         $setting->update([
             $request->key => $request->url
         ]);

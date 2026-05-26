@@ -58,12 +58,14 @@ Route::prefix('admin')->name('admin::')->middleware('web')->group(function () {
         Route::middleware('hasPermission:manage_department')->group(function () {
             Route::resource('manage-departments', DepartmentController::class)->except(['index', 'show'])->names('departments');
         });
-            
+        
+        // crud jobs
         Route::resource('manage-jobs', JobController::class)->parameters(['manage-jobs' => 'job'])->names('jobs');
         Route::middleware('hasPermission:manage_job')->group(function () {
             Route::resource('manage-jobs', JobController::class)->parameters(['manage-jobs' => 'job'])->except(['index', 'show'])->names('jobs');
         });
 
+        // crud posts
         Route::resource('posts', PostsController::class)->names('posts');
         Route::middleware('hasPermission:manage_post')->group(function () {
             Route::resource('posts', PostsController::class)->except(['index', 'show'])->names('posts');

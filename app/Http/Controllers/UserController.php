@@ -4,17 +4,14 @@ namespace App\Http\Controllers;
 
 use App\Models\Jobs;
 use App\Models\Post;
-use App\Models\SchoolSettings;
 use App\Models\Teacher;
-use Carbon\Carbon;
-use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
     public function index(){
         $posts = Post::with(['user', 'post_categories'])->where('status', 'published')->latest()->take(2)->get();
 
-        return view('guest.index', compact('schoolSetting', 'posts'));
+        return view('guest.index', compact('posts'));
     }
 
     public function jobIndex(){

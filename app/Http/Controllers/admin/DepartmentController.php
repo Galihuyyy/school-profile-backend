@@ -12,6 +12,11 @@ use Illuminate\Support\Facades\Storage;
 
 class DepartmentController extends Controller
 {
+
+    private function deleteImage($image) {
+        return Storage::disk('public')->delete($image);
+    }
+
     /**
      * Display a listing of the resource.
      */
@@ -91,7 +96,7 @@ class DepartmentController extends Controller
         try {
             if ($request->hasFile('image')) {
                 if ($department->image) {
-                    Storage::disk('public')->delete($department->image);
+                    $this->deleteImage($department->image);
                 }
                 $data['image'] = $request->file('image')->store('department', 'public');
             }
@@ -114,7 +119,7 @@ class DepartmentController extends Controller
         DB::beginTransaction();
         try {
             if ($department->image) {
-                Storage::disk('public')->delete($department->image);
+                $this->deleteImage($department->image);
             }
 
             $department->delete();

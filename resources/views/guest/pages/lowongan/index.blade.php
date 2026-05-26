@@ -44,8 +44,6 @@
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
                 @foreach ($jobs as $job)
                     <div class="group bg-white rounded-3xl border border-slate-100 hover:border-teal-200 shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden">
-
-                        {{-- TOP --}}
                         <div class="p-7">
                             <div class="flex items-start justify-between gap-4">
                                 <div>
@@ -136,14 +134,11 @@
                             </div>
 
                             <div class="flex items-center gap-3">
-                                <a href="{{ route('user::jobs.show', $job) }}"
-                                   class="px-5 py-2.5 rounded-xl bg-white border border-slate-200 hover:border-teal-200 hover:text-teal-700 text-slate-700 text-sm font-bold transition-all">
+                                <a href="{{ route('user::jobs.show', $job) }}" class="px-5 py-2.5 rounded-xl bg-white border border-slate-200 hover:border-teal-200 hover:text-teal-700 text-slate-700 text-sm font-bold transition-all">
                                     Detail
                                 </a>
 
-                                <a href="{{ $job->apply_link }}"
-                                   target="_blank"
-                                   class="px-5 py-2.5 rounded-xl bg-teal-600 hover:bg-teal-700 text-white text-sm font-bold transition-colors shadow-sm shadow-teal-600/20">
+                                <a href="{{ $job->apply_link }}" target="_blank" class="px-5 py-2.5 rounded-xl bg-teal-600 hover:bg-teal-700 text-white text-sm font-bold transition-colors shadow-sm shadow-teal-600/20">
                                     Apply
                                 </a>
                             </div>

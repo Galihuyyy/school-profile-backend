@@ -10,8 +10,7 @@
     @if (session('error'))
     <div class="mb-6 flex items-center gap-3 rounded-2xl border border-red-200 bg-red-50 px-5 py-4 text-red-700">
         <svg class="h-5 w-5 shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round"
-                d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+            <path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
         </svg>
 
         <span class="text-sm font-semibold">
@@ -32,30 +31,22 @@
 
                 {{-- Search --}}
                 <div class="relative w-full sm:w-80">
-                    <svg class="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-slate-400"
-                        fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round"
-                            d="M21 21l-4.35-4.35M17 11A6 6 0 115 11a6 6 0 0112 0z" />
+                    <svg class="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-slate-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-4.35-4.35M17 11A6 6 0 115 11a6 6 0 0112 0z" />
                     </svg>
 
-                    <input type="text"
-                           x-model="search"
-                           placeholder="Cari title atau company..."
-                           class="w-full rounded-xl border border-slate-200 bg-white py-2.5 pl-10 pr-4 text-sm text-slate-700 placeholder-slate-400 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-teal-500" />
+                    <input type="text" x-model="search" placeholder="Cari title atau company..." class="w-full rounded-xl border border-slate-200 bg-white py-2.5 pl-10 pr-4 text-sm text-slate-700 placeholder-slate-400 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-teal-500" />
                 </div>
 
                 {{-- Reset --}}
                 <template x-if="search">
-                    <button type="button"
-                            @click="search = ''"
-                            class="rounded-xl bg-slate-200 px-4 py-2.5 text-sm font-semibold text-slate-600 transition-colors hover:bg-slate-300">
+                    <button type="button" @click="search = ''" class="rounded-xl bg-slate-200 px-4 py-2.5 text-sm font-semibold text-slate-600 transition-colors hover:bg-slate-300">
                         Reset
                     </button>
                 </template>
 
                 {{-- Sort --}}
-                <select x-model="sort"
-                        class="cursor-pointer rounded-xl bg-slate-200 px-3 py-2.5 text-sm font-semibold text-slate-600 focus:outline-none focus:ring-0">
+                <select x-model="sort" class="cursor-pointer rounded-xl bg-slate-200 px-3 py-2.5 text-sm font-semibold text-slate-600 focus:outline-none focus:ring-0">
                     <option value="latest">Terbaru</option>
                     <option value="oldest">Terlama</option>
                     <option value="az">A → Z</option>
@@ -63,8 +54,7 @@
                 </select>
 
                 {{-- Filter --}}
-                <select x-model="active"
-                        class="cursor-pointer rounded-xl bg-slate-200 px-3 py-2.5 text-sm font-semibold text-slate-600 focus:outline-none focus:ring-0">
+                <select x-model="active" class="cursor-pointer rounded-xl bg-slate-200 px-3 py-2.5 text-sm font-semibold text-slate-600 focus:outline-none focus:ring-0">
                     <option value="">Semua</option>
                     <option value="1">Aktif</option>
                     <option value="0">Non-Aktif</option>
@@ -73,8 +63,7 @@
 
             {{-- Tambah --}}
             @if (hasPermission('manage_job'))
-            <a href="{{ route('admin::jobs.create') }}"
-               class="flex items-center gap-2 whitespace-nowrap rounded-xl bg-teal-600 px-5 py-2.5 text-sm font-bold text-white shadow-sm transition-colors hover:bg-teal-700">
+            <a href="{{ route('admin::jobs.create') }}" class="flex items-center gap-2 whitespace-nowrap rounded-xl bg-teal-600 px-5 py-2.5 text-sm font-bold text-white shadow-sm transition-colors hover:bg-teal-700">
                 <svg class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4" />
                 </svg>
@@ -85,8 +74,7 @@
         </div>
 
         {{-- TABLE --}}
-        <div class="overflow-hidden rounded-2xl border border-slate-100 bg-white shadow-sm"
-             x-data="{ openDelete: false, deleteId: null, deleteTitle: '' }">
+        <div class="overflow-hidden rounded-2xl border border-slate-100 bg-white shadow-sm" x-data="{ openDelete: false, deleteId: null, deleteTitle: '' }">
 
             <div class="overflow-x-auto">
                 <table class="w-full text-sm">
@@ -157,20 +145,16 @@
                             <td class="px-6 py-4">
                                 <div class="flex items-center justify-center gap-2">
 
-                                    <a href="{{ route('admin::jobs.show', $job) }}"
-                                       class="flex h-8 w-8 items-center justify-center rounded-lg bg-slate-100 text-slate-500 transition-colors hover:bg-blue-50 hover:text-blue-600">
+                                    <a href="{{ route('admin::jobs.show', $job) }}" class="flex h-8 w-8 items-center justify-center rounded-lg bg-slate-100 text-slate-500 transition-colors hover:bg-blue-50 hover:text-blue-600">
                                         👁
                                     </a>
 
                                     @if (hasPermission('manage_job'))
-                                        <a href="{{ route('admin::jobs.edit', $job) }}"
-                                        class="flex h-8 w-8 items-center justify-center rounded-lg bg-slate-100 text-slate-500 transition-colors hover:bg-amber-50 hover:text-amber-600">
+                                        <a href="{{ route('admin::jobs.edit', $job) }}" class="flex h-8 w-8 items-center justify-center rounded-lg bg-slate-100 text-slate-500 transition-colors hover:bg-amber-50 hover:text-amber-600">
                                             ✏️
                                         </a>
 
-                                        <button type="button"
-                                                @click="openDelete = true; deleteRecord = {{ $job }}; deleteTitle = '{{ $job->title }}'"
-                                                class="flex h-8 w-8 items-center justify-center rounded-lg bg-slate-100 text-slate-500 transition-colors hover:bg-red-50 hover:text-red-600">
+                                        <button type="button" @click="openDelete = true; deleteRecord = {{ $job }}; deleteTitle = '{{ $job->title }}'" class="flex h-8 w-8 items-center justify-center rounded-lg bg-slate-100 text-slate-500 transition-colors hover:bg-red-50 hover:text-red-600">
                                             🗑
                                         </button>
                                     @endif
@@ -189,18 +173,9 @@
                 </table>
             </div>
 
-            {{-- DELETE MODAL --}}
-            <div x-show="openDelete"
-                 x-cloak
-                 class="fixed inset-0 z-50 flex items-center justify-center"
-                 @keydown.escape.window="openDelete = false">
-
-                {{-- Backdrop --}}
-                <div class="absolute inset-0 bg-black/40 backdrop-blur-sm"
-                     @click="openDelete = false"></div>
-
+            @if (hasPermission('manage_job'))
                 @include('admin.jobs._modal-delete')
-            </div>
+            @endif
         </div>
     </div>
 </x-layouts.admin-layout>

@@ -8,7 +8,6 @@
             @if($mode !== 'create')
                 @method('PUT')
             @endif
-            <!-- Card 1: Informasi Dasar -->
             <div class="bg-white p-8 rounded-[2.5rem] border border-slate-100 shadow-xl shadow-slate-200/50">
                 <div class="flex items-center gap-3 mb-6 text-teal-600">
                     <div class="w-10 h-10 bg-teal-50 rounded-2xl flex items-center justify-center">
@@ -39,7 +38,6 @@
                 </div>
             </div>
 
-            <!-- Card 2: Hak Akses / Rules -->
             @if (hasPermission('manage_admin'))
                 <div class="bg-white p-8 rounded-[2.5rem] border border-slate-100 shadow-xl shadow-slate-200/50">
                     <div class="flex items-center gap-3 mb-6 text-teal-600">

@@ -1,10 +1,7 @@
 @if (hasPermission('manage_teacher'))
     <div x-show="openDelete" x-cloak class="fixed inset-0 z-50 flex items-center justify-center" @keydown.escape.window="openDelete = false">
-
-        {{-- Backdrop --}}
         <div class="absolute inset-0 bg-black/40 backdrop-blur-sm" @click="openDelete = false"></div>
 
-        {{-- Modal Box --}}
         <div class="relative bg-white rounded-2xl shadow-xl p-8 w-full max-w-md mx-4 z-10">
             <div class="flex flex-col items-center text-center gap-4">
                 <div class="w-16 h-16 rounded-2xl bg-red-50 flex items-center justify-center">
