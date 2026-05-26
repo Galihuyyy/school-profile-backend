@@ -1,4 +1,4 @@
-<div x-show="view === 'table'" x-transition class="mt-8 overflow-hidden rounded-4xl border border-zinc-200 bg-white shadow-sm">
+<div x-show="view === 'table'" x-transition class="mt-8 overflow-scroll rounded-4xl border border-zinc-200 bg-white shadow-sm">
     <table class="w-full">
         <thead class="bg-zinc-50 text-left text-sm text-zinc-500">
             <tr>
@@ -59,7 +59,7 @@
 
                     @if (hasPermission('manage_post'))
                         <td class="px-6 py-4">
-                            <div class="flex items-center justify-end gap-2">
+                            <div class="flex items-center justify-start gap-2">
                                 @if ($post->status !== 'published')
                                     <button type="button" class="inline-flex items-center gap-2 rounded-2xl bg-emerald-500 px-4 py-2 text-sm font-semibold text-white transition hover:bg-emerald-600">
                                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="h-4 w-4">

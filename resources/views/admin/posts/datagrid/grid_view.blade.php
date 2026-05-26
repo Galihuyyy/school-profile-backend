@@ -1,4 +1,4 @@
-<div x-show="view === 'grid'" x-transition class="mt-8 grid gap-6 md:grid-cols-2 xl:grid-cols-3">
+<div x-show="view === 'grid'" x-transition class="mt-8 grid gap-6 grid-cols-2 xl:grid-cols-3">
     @foreach ($posts as $post)
         <div x-show="('{{ strtolower($post->title) }}').includes(search.toLowerCase()) && (selectedCategory === '' || selectedCategory === '{{ $post->post_categories?->name }}') && (selectedStatus === '' || selectedStatus === '{{ $post->status }}') " x-transition class="group overflow-hidden rounded-[28px] border border-zinc-200 bg-white shadow-sm transition hover:scale-[1.01] hover:shadow-xl">
             <a href="{{ route('admin::posts.show', $post) }}">
@@ -54,7 +54,7 @@
             </a>
 
             <div class="border-t border-zinc-100 px-5 py-4">
-                <div class="flex items-center justify-between gap-3">
+                <div class="flex {{ $post->status != 'published' ? 'flex-col' : 'max-xl:flex-col xl:items-center' }} justify-between gap-3">
                     <div class="flex min-w-0 items-center gap-3">
                         <div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-2xl bg-zinc-200 font-semibold text-zinc-700">
                             {{ substr($post->created_by_name, 0, 1) }}
@@ -71,7 +71,7 @@
                     </div>
 
                     @if (hasPermission('manage_post'))
-                        <div class="flex items-center gap-2">
+                        <div class="max-xl:self-end flex items-center gap-2">
                             @if ($post->status !== 'published')
                                 <button type="button" class="inline-flex items-center gap-2 rounded-2xl bg-emerald-500 px-4 py-2 text-sm font-semibold text-white transition hover:bg-emerald-600">
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="h-4 w-4">

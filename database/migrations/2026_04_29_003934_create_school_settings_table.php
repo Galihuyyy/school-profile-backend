@@ -36,6 +36,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('school_settings');
+        Schema::dropIfExists('ms_school_settings');
     }
 };

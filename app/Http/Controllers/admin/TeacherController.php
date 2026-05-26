@@ -124,15 +124,10 @@ class TeacherController extends Controller
         } catch (QueryException $e) {
 
             if ($e->errorInfo[1] == 1451) {
-                return redirect()
-                    ->back()
-                    ->with('error', 'Guru tidak bisa dihapus karena masih menjadi kepala jurusan.');
+                return redirect()->back()->with('error', 'Guru tidak bisa dihapus karena masih menjadi kepala jurusan.');
             }
 
-            return redirect()
-                ->back()
-                ->withInput()
-                ->with('error', 'Terjadi kesalahan saat menghapus data.');
+            return redirect()->back()->withInput()->with('error', 'Terjadi kesalahan saat menghapus data.');
         }
     }
 }

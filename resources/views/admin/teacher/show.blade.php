@@ -13,21 +13,14 @@
     </div>
 
     <div class="grid grid-cols-1 xl:grid-cols-3 gap-6" x-data="{ openDelete: false, deleteId: null, deleteName: '' }">
-
-        {{-- KOLOM KIRI - Foto & Identitas --}}
         <div class="flex flex-col gap-6">
-
-            {{-- Card Foto --}}
-            <div
-                class="bg-white rounded-2xl border border-slate-100 shadow-sm p-8 flex flex-col items-center text-center gap-4">
+            <div class="bg-white rounded-2xl border border-slate-100 shadow-sm p-8 flex flex-col items-center text-center gap-4">
                 @if ($teacher->photo)
-                <img src="{{ Storage::url($teacher->photo) }}" alt="{{ $teacher->name }}"
-                    class="w-32 h-32 rounded-2xl object-cover border-2 border-slate-100">
+                    <img src="{{ Storage::url($teacher->photo) }}" alt="{{ $teacher->name }}" class="w-32 h-32 rounded-2xl object-cover border-2 border-slate-100">
                 @else
-                <div class="w-32 h-32 rounded-2xl bg-teal-100 flex items-center justify-center">
-                    <span class="text-teal-600 font-extrabold text-4xl">{{ strtoupper(substr($teacher->name, 0, 1))
-                        }}</span>
-                </div>
+                    <div class="w-32 h-32 rounded-2xl bg-teal-100 flex items-center justify-center">
+                        <span class="text-teal-600 font-extrabold text-4xl">{{ strtoupper(substr($teacher->name, 0, 1)) }}</span>
+                    </div>
                 @endif
 
                 <div>
@@ -36,26 +29,22 @@
                 </div>
 
                 @if ($teacher->active)
-                <span
-                    class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-teal-50 text-teal-700 text-xs font-bold">
-                    <span class="w-1.5 h-1.5 rounded-full bg-teal-500"></span>
-                    Aktif
-                </span>
+                    <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-teal-50 text-teal-700 text-xs font-bold">
+                        <span class="w-1.5 h-1.5 rounded-full bg-teal-500"></span>
+                        Aktif
+                    </span>
                 @else
-                <span
-                    class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-slate-100 text-slate-500 text-xs font-bold">
-                    <span class="w-1.5 h-1.5 rounded-full bg-slate-400"></span>
-                    Non-Aktif
-                </span>
+                    <span
+                        class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-slate-100 text-slate-500 text-xs font-bold">
+                        <span class="w-1.5 h-1.5 rounded-full bg-slate-400"></span>
+                        Non-Aktif
+                    </span>
                 @endif
 
-                {{-- Aksi --}}
                 <div class="flex gap-2 w-full pt-2 border-t border-slate-100">
-                    <a href="{{ route('admin::teachers.edit', $teacher) }}"
-                        class="flex-1 flex items-center justify-center gap-2 px-4 py-2.5 bg-teal-600 hover:bg-teal-700 text-white rounded-xl text-sm font-bold transition-colors">
+                    <a href="{{ route('admin::teachers.edit', $teacher) }}" class="flex-1 flex items-center justify-center gap-2 px-4 py-2.5 bg-teal-600 hover:bg-teal-700 text-white rounded-xl text-sm font-bold transition-colors">
                         <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round"
-                                d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
                         </svg>
                         Edit
                     </a>
@@ -68,13 +57,9 @@
                     </button>
                 </div>
             </div>
-
         </div>
 
-        {{-- KOLOM KANAN - Detail Info --}}
         <div class="xl:col-span-2 flex flex-col gap-6">
-
-            {{-- Data Pribadi --}}
             <div class="bg-white rounded-2xl border border-slate-100 shadow-sm overflow-hidden">
                 <div class="px-8 py-5 border-b border-slate-100 bg-slate-50/50">
                     <h4 class="font-extrabold text-slate-900">Data Pribadi</h4>
@@ -121,8 +106,8 @@
                     <div>
                         <p class="text-xs text-slate-400 font-semibold uppercase tracking-wide mb-1">Masa Kerja</p>
                         @php
-                        $years = (int) $teacher->join_date->diffInYears(now());
-                        $months = (int) $teacher->join_date->copy()->addYears($years)->diffInMonths(now());
+                            $years = (int) $teacher->join_date->diffInYears(now());
+                            $months = (int) $teacher->join_date->copy()->addYears($years)->diffInMonths(now());
                         @endphp
                         <p class="font-bold text-slate-800">{{ $years }} tahun {{ $months }} bulan</p>
                     </div>
@@ -130,7 +115,6 @@
                 </div>
             </div>
 
-            {{-- Timestamps --}}
             <div class="bg-white rounded-2xl border border-slate-100 shadow-sm overflow-hidden">
                 <div class="px-8 py-5 border-b border-slate-100 bg-slate-50/50">
                     <h4 class="font-extrabold text-slate-900">Riwayat Data</h4>
@@ -147,7 +131,6 @@
                     </div>
                 </div>
             </div>
-
         </div>
 
         @include('admin.teacher.modal_delete')

@@ -4,7 +4,7 @@
     </x-slot>
     
     <x-admin.sidebar></x-admin.sidebar>
-    <main class="ml-72 flex-1 p-12">
+    <main class="max-md:pt-18 md:ml-72 flex-1 p-6 md:p-12">
         @if ($hiddenHeader !== true)
             <x-admin.page-header>
                 <x-slot name="title">{{ $title ?? '' }}</x-slot>

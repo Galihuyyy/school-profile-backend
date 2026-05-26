@@ -7,16 +7,13 @@
     }
 }">
 
-    {{-- GAMBAR --}}
     <div class="flex items-center gap-8 pb-8 mb-8 border-b border-slate-100">
         <div class="shrink-0">
             <div class="w-28 h-28 rounded-2xl overflow-hidden bg-slate-100 border-2 border-dashed border-slate-300 relative">
-                {{-- Preview Alpine --}}
                 <template x-if="preview">
                     <img :src="preview" class="w-full h-full object-cover">
                 </template>
 
-                {{-- Gambar dari DB (edit mode) --}}
                 <template x-if="!preview">
                     @if (isset($department) && $department->image)
                         <img src="{{ Storage::url($department->image) }}" class="w-full h-full object-cover">
@@ -47,10 +44,8 @@
         </div>
     </div>
 
-    {{-- FORM FIELDS --}}
     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
 
-        {{-- Nama Jurusan --}}
         <div>
             <label class="block text-sm font-bold text-slate-700 mb-2">Nama Jurusan <span class="text-red-500">*</span></label>
             <input type="text" name="name" value="{{ old('name', $department->name ?? '') }}"
@@ -62,7 +57,6 @@
             @enderror
         </div>
 
-        {{-- Kepala Jurusan --}}
         <div>
             <label class="block text-sm font-bold text-slate-700 mb-2">Kepala Jurusan <span class="text-red-500">*</span></label>
             <select name="head_teacher_id"
@@ -81,7 +75,6 @@
             @enderror
         </div>
 
-        {{-- Deskripsi --}}
         <div class="md:col-span-2">
             <label class="block text-sm font-bold text-slate-700 mb-2">Deskripsi <span class="text-red-500">*</span></label>
             <textarea name="description" rows="4"

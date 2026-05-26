@@ -1,4 +1,3 @@
-{{-- resources/views/guest/jobs/show.blade.php --}}
 <x-layouts.user-layout>
 
     <section class="bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900">

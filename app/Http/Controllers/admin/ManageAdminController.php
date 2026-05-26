@@ -14,6 +14,15 @@ use App\Mail\VerifyAdminEmail;
 
 class ManageAdminController extends Controller
 {
+
+    private function updatePayload($data, $admin)
+    {
+        return [
+            'name' => $data['name'] ?? $admin->name,
+            'username' => $data['username'] ?? $admin->username,
+            'email' => $data['email'] ?? $admin->email,
+        ];
+    }
     /**
      * Display a listing of the resource.
      */
@@ -108,11 +117,7 @@ class ManageAdminController extends Controller
 
             $isEmailChanged = isset($data['email']) && $data['email'] !== $admin->email;
 
-            $payload = [
-                'name' => $data['name'] ?? $admin->name,
-                'username' => $data['username'] ?? $admin->username,
-                'email' => $data['email'] ?? $admin->email,
-            ];
+            $payload = $this->updatePayload($data, $admin);
 
             if (!empty($data['password'])) {
                 $payload['password'] = Hash::make($data['password']);

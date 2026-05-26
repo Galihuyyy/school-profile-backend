@@ -24,7 +24,7 @@
         </section>
 
         <main class="max-w-7xl mx-auto px-6 py-16">
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+            <div class="grid grid-cols-2 lg:grid-cols-4 gap-8">
                 @foreach ($teachers as $teacher)
                     <div x-show="'{{ strtolower($teacher->name) }}'.includes(search.toLowerCase())" x-transition class="bg-white rounded-4xl overflow-hidden border border-slate-100 shadow-sm hover:shadow-xl transition-all duration-300 group flex flex-col" >
                         <div class="relative h-72 overflow-hidden">
@@ -59,7 +59,7 @@
                                     </p>
                                 </div>
 
-                                <div class="text-center">
+                                <div class="text-center max-sm:col-span-2">
                                     <p class="text-slate-400 text-xs mb-1">
                                         NIP
                                     </p>
@@ -69,7 +69,7 @@
                                     </p>
                                 </div>
 
-                                <div class="text-center">
+                                <div class="text-center max-sm:col-span-2">
                                     <p class="text-slate-400 text-xs mb-1">
                                         Golongan
                                     </p>

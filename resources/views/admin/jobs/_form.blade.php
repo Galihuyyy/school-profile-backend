@@ -1,6 +1,4 @@
-
 <div>
-
     <div class="pb-8 mb-8 border-b border-slate-100">
         <div class="flex items-start justify-between gap-6 flex-col lg:flex-row">
             <div>
@@ -31,8 +29,7 @@
                     <label class="flex items-center gap-3 cursor-pointer group">
                         <input type="radio" x-model="form.status" :disabled="readonly" name="status" value="0" {{ old('status', $job->status ?? true) == 0 ? 'checked' : '' }} class="w-4 h-4 text-teal-600 border-slate-300 focus:ring-teal-500">
 
-                        <span
-                            class="text-sm font-semibold text-slate-700 group-hover:text-teal-600 transition-colors">
+                        <span class="text-sm font-semibold text-slate-700 group-hover:text-teal-600 transition-colors">
                             Non-Aktif
                         </span>
                     </label>
@@ -137,21 +134,11 @@
 
         <div class="space-y-4">
             @if (isset($job) && $job->job_requirements()->count() === 0)
-                <div
-                    x-transition
-                    class="border border-dashed border-slate-200 rounded-2xl p-8 bg-slate-50/70"
-                >
+                <div x-transition class="border border-dashed border-slate-200 rounded-2xl p-8 bg-slate-50/70">
                     <div class="flex flex-col items-center justify-center text-center">
-
                         <div class="w-16 h-16 rounded-2xl bg-white border border-slate-200 flex items-center justify-center mb-4">
-                            <svg class="w-8 h-8 text-slate-300"
-                                fill="none"
-                                stroke="currentColor"
-                                stroke-width="1.8"
-                                viewBox="0 0 24 24">
-                                <path stroke-linecap="round"
-                                    stroke-linejoin="round"
-                                    d="M9 12h6m-6 4h6M7 4h10a2 2 0 012 2v12a2 2 0 01-2 2H7a2 2 0 01-2-2V6a2 2 0 012-2z" />
+                            <svg class="w-8 h-8 text-slate-300" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M9 12h6m-6 4h6M7 4h10a2 2 0 012 2v12a2 2 0 01-2 2H7a2 2 0 01-2-2V6a2 2 0 012-2z" />
                             </svg>
                         </div>
 
@@ -163,22 +150,10 @@
                             Recruitment ini tidak memiliki requirement atau syarat tambahan.
                         </p>
 
-                        <button
-                            x-show="!readonly"
-                            type="button"
-                            @click="addRequirement()"
-                            class="mt-5 inline-flex items-center gap-2 px-4 py-2.5 bg-teal-600 hover:bg-teal-700 text-white rounded-xl text-sm font-bold transition-colors"
-                        >
-                            <svg class="w-4 h-4"
-                                fill="none"
-                                stroke="currentColor"
-                                stroke-width="2.5"
-                                viewBox="0 0 24 24">
-                                <path stroke-linecap="round"
-                                    stroke-linejoin="round"
-                                    d="M12 4v16m8-8H4" />
+                        <button x-show="!readonly" type="button" @click="addRequirement()" class="mt-5 inline-flex items-center gap-2 px-4 py-2.5 bg-teal-600 hover:bg-teal-700 text-white rounded-xl text-sm font-bold transition-colors">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4" />
                             </svg>
-
                             Tambah Requirement
                         </button>
                     </div>
@@ -186,7 +161,6 @@
             @endif
             <template x-for="(requirement, index) in form.requirements" :key="index">
                 <div class="flex items-start gap-3">
-
                     <div class="w-10 h-10 rounded-xl bg-slate-100 flex items-center justify-center text-sm font-bold text-slate-500 shrink-0">
                         <span x-text="index + 1"></span>
                     </div>
@@ -195,19 +169,12 @@
                         <input type="text" :name="`form.requirements[${index}]`" x-model="form.requirements[index]" :disabled="readonly" placeholder="Contoh: Minimal pengalaman 1 tahun" class="w-full px-4 py-3 rounded-xl border border-slate-200 bg-slate-50 text-slate-800 text-sm focus:outline-none focus:ring-2 focus:ring-teal-500 focus:bg-white transition-all">
                     </div>
 
-                    <button type="button"
-                            @click="removeRequirement(index)"
-                            x-show="form.requirements.length > 1 && !readonly"
-                            class="w-10 h-10 rounded-xl bg-red-50 hover:bg-red-100 text-red-500 flex items-center justify-center transition-colors shrink-0">
+                    <button type="button" @click="removeRequirement(index)" x-show="form.requirements.length > 1 && !readonly" class="w-10 h-10 rounded-xl bg-red-50 hover:bg-red-100 text-red-500 flex items-center justify-center transition-colors shrink-0">
                         ✕
                     </button>
                 </div>
             </template>
-            <p
-                x-show="requirementError"
-                x-text="requirementError"
-                class="text-red-500 text-xs mt-2"
-            ></p>
+            <p x-show="requirementError" x-text="requirementError" class="text-red-500 text-xs mt-2"></p>
 
             @error('form.requirements')
             <p class="text-red-500 text-xs">
