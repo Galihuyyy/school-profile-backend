@@ -3,7 +3,7 @@
 
         <!-- Logo / Title -->
         <h1 class="text-lg font-semibold tracking-wide text-gray-800 uppercase">
-            {{ $schoolSetting->name }}
+            {{ schoolSetting('name') }}
         </h1>
 
         <!-- Menu -->

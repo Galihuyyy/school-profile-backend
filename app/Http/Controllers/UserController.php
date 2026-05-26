@@ -5,13 +5,13 @@ namespace App\Http\Controllers;
 use App\Models\Jobs;
 use App\Models\Post;
 use App\Models\SchoolSettings;
+use App\Models\Teacher;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
     public function index(){
-        $schoolSetting = SchoolSettings::first();
         $posts = Post::with(['user', 'post_categories'])->where('status', 'published')->latest()->take(2)->get();
 
         return view('guest.index', compact('schoolSetting', 'posts'));
@@ -35,4 +35,15 @@ class UserController extends Controller
 
         return view('guest.pages.berita.detail', compact('post', 'beritaTerkini'));
     }
+
+    public function teacherIndex(){
+        $teachers = Teacher::paginate(10);
+
+        return view('guest.pages.guru.list-guru', compact('teachers'));
+    }
+
+    public function teacherShow(Teacher $guru){
+        return view('guest.pages.guru.show', compact('guru'));
+    }
+    
 }

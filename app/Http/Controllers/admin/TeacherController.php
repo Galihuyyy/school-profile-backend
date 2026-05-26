@@ -5,6 +5,7 @@ namespace App\Http\Controllers\admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\TeacherRequest;
 use App\Models\Teacher;
+use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
@@ -112,18 +113,26 @@ class TeacherController extends Controller
      */
     public function destroy(Teacher $teacher)
     {
-        DB::beginTransaction();
         try {
+            $teacher->delete();
+
             if ($teacher->photo) {
                 Storage::disk('public')->delete($teacher->photo);
             }
 
-            $teacher->delete();
-            DB::commit();
             return redirect()->route('admin::teachers.index')->with('success', 'Data guru berhasil dihapus.');
-        } catch (\Throwable $th) {
-            DB::rollBack();
-            return back()->withInput()->with('error', 'Gagal menghapus data: ' . $th->getMessage());
+        } catch (QueryException $e) {
+
+            if ($e->errorInfo[1] == 1451) {
+                return redirect()
+                    ->back()
+                    ->with('error', 'Guru tidak bisa dihapus karena masih menjadi kepala jurusan.');
+            }
+
+            return redirect()
+                ->back()
+                ->withInput()
+                ->with('error', 'Terjadi kesalahan saat menghapus data.');
         }
     }
 }

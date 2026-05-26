@@ -21,6 +21,10 @@ return [
                 'title' => 'Posts',
                 'route' => 'admin::posts.index',
             ],
+            [
+                'title' => 'Jurusan',
+                'route' => 'admin::departments.index'
+            ]
         ]
     ]
 ];

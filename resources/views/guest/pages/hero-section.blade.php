@@ -23,7 +23,7 @@
                 </h1>
     
                 <p class="mt-8 text-xl text-slate-700 leading-relaxed max-w-2xl font-normal">
-                    <strong class="font-semibold text-slate-900">{{ $schoolSetting->name }}</strong> {{ $schoolSetting->description }}
+                    <strong class="font-semibold text-slate-900">{{ schoolSetting('name') }}</strong> {{ schoolSetting('description') }}
                 </p>
     
                 <div class="mt-12 flex flex-wrap gap-5">
@@ -45,7 +45,7 @@
     
     
                 <div class="relative w-72 h-72 sm:w-80 sm:h-80 md:w-96 md:h-96 rounded-full bg-white p-6 shadow-2xl border-8 border-white flex items-center justify-center z-10">
-                    <img src="{{ $schoolSetting->logo_url }}" alt="Logo Resmi SMKN 1 ABCD" class="w-full h-full rounded-full object-cover" />
+                    <img src="{{ schoolSetting('logo_url') }}" alt="Logo Resmi SMKN 1 ABCD" class="w-full h-full rounded-full object-cover" />
                 </div>
     
     
@@ -59,7 +59,7 @@
                     </div>
                     <div>
                         <p class="text-sm text-slate-500 font-medium">Status Sekolah</p>
-                        <p class="text-xl font-extrabold text-slate-950 capitalize">{{ $schoolSetting->status }}</p>
+                        <p class="text-xl font-extrabold text-slate-950 capitalize">{{ schoolSetting('status') }}</p>
                     </div>
                 </div>
     
@@ -69,7 +69,7 @@
                             d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z">
                         </path>
                     </svg>
-                    <p class="font-bold text-sm tracking-wide">Terakreditasi {{ $schoolSetting->akreditasi }}</p>
+                    <p class="font-bold text-sm tracking-wide">Terakreditasi {{ schoolSetting('akreditasi') }}</p>
                 </div>
             </div>
     

@@ -25,7 +25,7 @@
 
             <div class="lg:w-1/2">
                 <div class="inline-flex items-center gap-2 px-4 py-2 bg-teal-100 text-teal-700 rounded-full text-xs font-bold mb-6">
-                    Keluarga Besar SMKN 1 ABCD
+                    Keluarga Besar {{ schoolSetting('name') }}
                 </div>
                 <h2 class="text-4xl font-extrabold text-slate-900 leading-tight mb-6">
                     Dipandu oleh Praktisi <br> & Mentor Berdedikasi.
@@ -35,7 +35,7 @@
                 </p>
                 
                 <div class="flex flex-col sm:flex-row gap-4">
-                    <a href="daftar-guru.html" class="px-8 py-4 bg-teal-600 text-white rounded-2xl font-bold hover:bg-teal-700 transition-all shadow-lg shadow-teal-600/20 text-center flex items-center justify-center gap-2">
+                    <a href="{{ route('user::teachers.index') }}" class="px-8 py-4 bg-teal-600 text-white rounded-2xl font-bold hover:bg-teal-700 transition-all shadow-lg shadow-teal-600/20 text-center flex items-center justify-center gap-2">
                         Buka Direktori Guru
                         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
                     </a>

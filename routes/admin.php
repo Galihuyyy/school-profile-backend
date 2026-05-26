@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\admin\auth\LoginController;
+use App\Http\Controllers\admin\DepartmentController;
 use App\Http\Controllers\admin\JobController;
 use App\Http\Controllers\admin\ManageAdminController;
 use App\Http\Controllers\admin\PostsController;
@@ -15,7 +16,6 @@ Route::prefix('admin')->name('admin::')->middleware('web')->group(function () {
         Route::post('/', [LoginController::class, 'loginProcess'])->name('login.process');
     });
 
-        
     Route::get('/verify-email/{id}', [LoginController::class, 'verify'])
         ->middleware('signed')
         ->name('verification.verify');
@@ -33,13 +33,19 @@ Route::prefix('admin')->name('admin::')->middleware('web')->group(function () {
                 Route::post('/socmed/update', [SchoolSettingController::class, 'updateSocmed'])->name('.socmed.update');
             });
         });
-    
+
         // crud teacher
-        Route::resource('manage-teachers', TeacherController::class)->names('teachers');
+        Route::resource('manage-teachers', TeacherController::class)->parameters(['manage-teachers' => 'teacher'])->names('teachers');
         Route::middleware('hasPermission:manage_teacher')->group(function () {
-            Route::resource('manage-teachers', TeacherController::class)->except(['index', 'show'])->names('teachers');
+            Route::resource('manage-teachers', TeacherController::class)->parameters(['manage-teachers' => 'teacher'])->except('index')->names('teachers');
         });
-        
+
+        // crud department
+        Route::resource('manage-departments', DepartmentController::class)->parameters(['manage-departments' => 'department'])->names('departments');
+        Route::middleware('hasPermission:manage_department')->group(function () {
+            Route::resource('manage-departments', DepartmentController::class)->parameters(['manage-departments' => 'department'])->except('index')->names('departments');
+        });
+
         // crud admin
         Route::resource('manage-admins', ManageAdminController::class)->parameters(['manage-admins' => 'admin'])->names('admins');
         Route::middleware('hasPermission:manage_admin')->group(function () {
@@ -48,8 +54,9 @@ Route::prefix('admin')->name('admin::')->middleware('web')->group(function () {
         });
         
         // crud departments
-        Route::prefix('/departments')->name('departments.')->group(function () {
-            // route departments in progress
+        Route::resource('manage-departments', DepartmentController::class)->names('departments');
+        Route::middleware('hasPermission:manage_department')->group(function () {
+            Route::resource('manage-departments', DepartmentController::class)->except(['index', 'show'])->names('departments');
         });
             
         Route::resource('manage-jobs', JobController::class)->parameters(['manage-jobs' => 'job'])->names('jobs');

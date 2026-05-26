@@ -27,7 +27,8 @@
             "Database\\Seeders\\": "database/seeders/"
         },
         "files": [
-            "app/Helpers/PermissionHelper.php"
+            "app/Helpers/PermissionHelper.php",
+            "app/Helpers/SchoolSettingHelper.php"
         ]
     },
     "autoload-dev": {

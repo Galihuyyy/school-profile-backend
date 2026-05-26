@@ -15,7 +15,7 @@
                         </div>
                         <div>
                             <p class="text-sm font-semibold text-slate-400 uppercase tracking-wider">Lokasi</p>
-                            <p class="text-lg font-bold text-slate-800">{{ $schoolSetting->location }}</p>
+                            <p class="text-lg font-bold text-slate-800">{{ schoolSetting('location') }}</p>
                         </div>
                     </div>
 
@@ -25,7 +25,7 @@
                         </div>
                         <div>
                             <p class="text-sm font-semibold text-slate-400 uppercase tracking-wider">Email Resmi</p>
-                            <p class="text-lg font-bold text-slate-800">{{ $schoolSetting->email }}</p>
+                            <p class="text-lg font-bold text-slate-800">{{ schoolSetting('email') }}</p>
                         </div>
                     </div>
                 </div>
